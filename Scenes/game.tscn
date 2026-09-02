@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://5w4ju3ev3hgl"]
+
+[ext_resource type="PackedScene" uid="uid://bqjkwphhdeosm" path="res://Scenes/player.tscn" id="1_ebmjs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ebmjs"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_qxrlw"]
+sky_material = SubResource("ProceduralSkyMaterial_ebmjs")
+
+[sub_resource type="Environment" id="Environment_wrm1d"]
+background_mode = 2
+sky = SubResource("Sky_qxrlw")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g35c3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yrk3d"]
+
+[node name="Game" type="Node3D" unique_id=1197174109]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1166078804]
+environment = SubResource("Environment_wrm1d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=223874491]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=450789918 instance=ExtResource("1_ebmjs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12513566, 3.435895, 0.16706705)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1632726359]
+
+[node name="wall" type="CSGBox3D" parent="CSGCombiner3D" unique_id=496293425]
+transform = Transform3D(1, 0, 0, 0, 13.800002, 0, 0, 0, 38.998573, -16, 6.1935396, 0.32662868)
+
+[node name="wall1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2124825769]
+transform = Transform3D(1, 0, 0, 0, 13.800002, 0, 0, 0, 38.998573, 22, 6.1935396, 0.32662868)
+
+[node name="wall2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1403500707]
+transform = Transform3D(-4.371139e-08, 0, 38.998573, 0, 13.800002, 0, -0.99999994, 0, -1.7046816e-06, 3, 6.1935396, -19.158222)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=758968739]
+transform = Transform3D(6.9300003, 0, 0, 0, 16.128002, 0, 0, 0, 6.8, 7.899376, 6.0343113, 7.386426)
+height = 0.8881836
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2049760845]
+transform = Transform3D(3.9880393, 0, 0, 0, 3.9880393, 0, 0, 0, 3.9880393, -7, 1, 7)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1508359047]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=952760164]
+transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)
+mesh = SubResource("BoxMesh_g35c3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2035137811]
+transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)
+shape = SubResource("BoxShape3D_yrk3d")
