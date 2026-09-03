@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://di01xjnwxf5cm"]
+
+[ext_resource type="Texture2D" uid="uid://bjti61adkrukk" path="res://Assets/3D models/Primitives/survey-colour-grid-final2.jpg" id="1_t57pg"]
+
+[resource]
+resource_name = "Color Grid Mat"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_t57pg")
+emission_enabled = true
