@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bqjkwphhdeosm" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="MeshLibrary" uid="uid://b11kpy7461nle" path="res://Assets/bunker_tiles.tres" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://cjqljiwo1qkeu" path="res://Scripts/interactable.gd" id="3_wrm1d"]
+[ext_resource type="Script" uid="uid://ddfltpoxtxvcb" path="res://Scripts/gameManager.gd" id="4_3dryh"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
 
@@ -20,6 +21,9 @@ size = Vector3(2.6000001, 1, 0.4)
 albedo_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node3D" unique_id=1197174109]
+
+[node name="GameManager" type="Node" parent="." unique_id=1593327408 groups=["gameManagerGroup"]]
+script = ExtResource("4_3dryh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1166078804]
 environment = SubResource("Environment_g0mrk")
@@ -91,7 +95,7 @@ data = {
 "cells": PackedInt32Array(4, 65532, 393231, 4, 65531, 393231, 65533, 0, 1376271, 65533, 1, 786445, 65534, 0, 393231, 65534, 1, 1114127)
 }
 
-[node name="Radio" type="StaticBody3D" parent="." unique_id=1603018373]
+[node name="Radio" type="StaticBody3D" parent="." unique_id=1603018373 groups=["bunkerTasks"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 1.2, 0.049999923)
 script = ExtResource("3_wrm1d")
 taskName = "Radio"

@@ -2,6 +2,7 @@ extends Node3D
 
 var sensitivity = 0.2
 @onready var interactionRay: RayCast3D = $Camera3D/interactionRay
+@onready var interactionPrompt: Label = $"../HUD/InteractionPrompt"
 
 # cursor lock 
 func _ready() -> void:
@@ -31,4 +32,12 @@ func _input(event: InputEvent) -> void:
 			var target = interactionRay.get_collider()
 			if target is Interactable:
 				target.interact(get_parent())
-				
+
+func _process(delta: float) -> void:
+	if interactionRay and interactionRay.is_colliding():
+		var target = interactionRay.get_collider()
+		if target is Interactable and target.isBroken:
+			interactionPrompt.text = "[E] Repair " + target.taskName
+			return
+			
+		interactionPrompt.text = ""

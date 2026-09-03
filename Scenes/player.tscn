@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dwbgo85887avq" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://vxrflrn5buem" path="res://Scripts/camera.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://chma36bn74x18" path="res://Scripts/timerLabel.gd" id="3_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbo6d"]
 
@@ -20,3 +21,49 @@ script = ExtResource("2_cvnsp")
 
 [node name="interactionRay" type="RayCast3D" parent="head/Camera3D" unique_id=1978045571]
 target_position = Vector3(0, 0, -5)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=664364098]
+
+[node name="TimerLabel" type="Label" parent="HUD" unique_id=544041120]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "5:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6t5aa")
+
+[node name="InteractionPrompt" type="Label" parent="HUD" unique_id=1825364076]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -63.0
+offset_right = 20.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crosshair" type="Label" parent="HUD" unique_id=762509784]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -50.0
+offset_right = 20.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 3
