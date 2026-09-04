@@ -1,8 +1,16 @@
 extends Node3D
 
 var sensitivity = 0.2
+
 @onready var interactionRay: RayCast3D = $Camera3D/interactionRay
 @onready var interactionPrompt: Label = $"../HUD/InteractionPrompt"
+@onready var gameManager = get_tree().get_first_node_in_group("gameManagerGroup")
+@onready var crosshair: ColorRect = $"../HUD/Crosshair"
+
+var isDontLookBackActive: bool = false
+var startingYRotation: float = 0.0
+
+const ROTATION_THRESHOLD: float = 1.2
 
 # cursor lock 
 func _ready() -> void:
@@ -32,12 +40,40 @@ func _input(event: InputEvent) -> void:
 			var target = interactionRay.get_collider()
 			if target is Interactable:
 				target.interact(get_parent())
+				
+	# TEMPORARY REMOVE LATER
+	if Input.is_key_pressed(KEY_T) and not isDontLookBackActive:
+		startDontLookBackEvent()
 
 func _process(delta: float) -> void:
+	handleHUDPrompts()
+	
+	if isDontLookBackActive:
+		var currentYRotation = get_parent().global_transform.basis.get_euler().y
+		
+		var angleDiff = abs(angle_difference(startingYRotation, currentYRotation))
+		
+		if angleDiff > ROTATION_THRESHOLD:
+			triggerLookBackPenalty()
+	
+func startDontLookBackEvent() -> void:
+	isDontLookBackActive = true
+	
+	startingYRotation = get_parent().global_transform.basis.get_euler().y
+	print("NARRATOR: DO NOT LOOK BEHIND YOU.") # tts narrator
+	
+func triggerLookBackPenalty() -> void:
+	isDontLookBackActive = false
+	
+	if gameManager:
+		gameManager.applyLookBackPenalty()
+	
+func handleHUDPrompts() -> void:
 	if interactionRay and interactionRay.is_colliding():
 		var target = interactionRay.get_collider()
 		if target is Interactable and target.isBroken:
 			interactionPrompt.text = "[E] Repair " + target.taskName
 			return
 			
-		interactionPrompt.text = ""
+	if interactionPrompt: interactionPrompt.text = ""
+	if crosshair: crosshair.color = Color.WHITE

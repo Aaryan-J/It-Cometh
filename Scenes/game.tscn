@@ -99,7 +99,6 @@ data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 1.2, 0.049999923)
 script = ExtResource("3_wrm1d")
 taskName = "Radio"
-isBroken = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Radio" unique_id=1339703764]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8500001, 0, 0.3)

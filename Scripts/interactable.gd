@@ -15,8 +15,13 @@ func interact(playerNode: CharacterBody3D):
 		print(taskName, " is working perfectly right now.")
 
 func startMinigame(playerNode: CharacterBody3D):  # player node for when imma add minigames
-	print("Starting minigame for ", taskName)
-	completeTask() #TODO: make sure to add minigame to this
+	var minigameWindow = playerNode.get_node_or_null("HUD/MinigameWindow")
+	
+	if minigameWindow:
+		minigameWindow.openMinigame(self)
+	else:
+		print("HUD minigame window not found. Auto complete task")
+		completeTask() #TODO: make sure to add minigame to this
 	
 func completeTask():
 	isBroken = false

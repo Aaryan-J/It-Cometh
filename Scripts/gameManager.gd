@@ -84,6 +84,6 @@ func triggerCosmicEnding() -> void:
 	print("IT IS HERE")
 
 # ------ look back penalty ------
-func applyLookbackPenalty() -> void:
+func applyLookBackPenalty() -> void:
 	timeLeft = max(timeLeft - 30.0, 1.0)
 	print("PENALTY: Looked back! 30 seconds drained from active clock.")

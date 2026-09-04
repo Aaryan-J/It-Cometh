@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dwbgo85887avq" path="res://Scripts/player.gd" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://vxrflrn5buem" path="res://Scripts/camera.gd" id="2_cvnsp"]
 [ext_resource type="Script" uid="uid://chma36bn74x18" path="res://Scripts/timerLabel.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://drvcrdrmh0q2d" path="res://Scripts/taskAlert.gd" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://b3iryrruimdjt" path="res://Scripts/minigameWindow.gd" id="5_fkybt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbo6d"]
 
@@ -51,7 +53,8 @@ theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Crosshair" type="Label" parent="HUD" unique_id=762509784]
+[node name="Crosshair" type="ColorRect" parent="HUD" unique_id=2110043775]
+custom_maximum_size = Vector2(4, 4)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -63,7 +66,47 @@ offset_right = 20.0
 offset_bottom = 34.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "."
+
+[node name="TaskAlert" type="Label" parent="HUD" unique_id=1633049590]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 90.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
-vertical_alignment = 3
+vertical_alignment = 1
+script = ExtResource("4_vgqql")
+
+[node name="MinigameWindow" type="Control" parent="HUD" unique_id=1890760036]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_fkybt")
+
+[node name="BGPanel" type="Panel" parent="HUD/MinigameWindow" unique_id=752583079]
+custom_minimum_size = Vector2(600, 450)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FixButton" type="Button" parent="HUD/MinigameWindow/BGPanel" unique_id=270011988]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "FIX COMPONENT"
+
+[connection signal="pressed" from="HUD/MinigameWindow/BGPanel/FixButton" to="HUD/MinigameWindow" method="_on_fix_button_pressed"]
