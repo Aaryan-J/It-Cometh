@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bqjkwphhdeosm"]
 
-[ext_resource type="Script" uid="uid://dwbgo85887avq" path="res://Scripts/player.gd" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://vxrflrn5buem" path="res://Scripts/camera.gd" id="2_cvnsp"]
-[ext_resource type="Script" uid="uid://chma36bn74x18" path="res://Scripts/timerLabel.gd" id="3_6t5aa"]
-[ext_resource type="Script" uid="uid://drvcrdrmh0q2d" path="res://Scripts/taskAlert.gd" id="4_vgqql"]
-[ext_resource type="Script" uid="uid://b3iryrruimdjt" path="res://Scripts/minigameWindow.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://dwbgo85887avq" path="res://Scripts/Player/player.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://vxrflrn5buem" path="res://Scripts/Player/camera.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://chma36bn74x18" path="res://Scripts/Player/HUD/timerLabel.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://drvcrdrmh0q2d" path="res://Scripts/Player/HUD/taskAlert.gd" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://b3iryrruimdjt" path="res://Scripts/Tasks/minigameWindow.gd" id="5_fkybt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbo6d"]
 
@@ -23,6 +23,13 @@ script = ExtResource("2_cvnsp")
 
 [node name="interactionRay" type="RayCast3D" parent="head/Camera3D" unique_id=1978045571]
 target_position = Vector3(0, 0, -5)
+
+[node name="Flashlight" type="SpotLight3D" parent="head/Camera3D" unique_id=1809673017]
+transform = Transform3D(1, 0, 0, 0, 0.99845177, -0.055623263, 0, 0.055623263, 0.99845177, 0, -0.24761403, -0.020839214)
+light_energy = 6.13
+shadow_enabled = true
+spot_range = 15.0
+spot_angle = 30.0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=664364098]
 

@@ -12,7 +12,7 @@ var totalTasksCompleted: int = 0
 var activeBrokenTasks: Array[Interactable] = []
 
 # timer var
-var taskSpawnCooldown: float = 25.0
+var taskSpawnCooldown: float = 15.0
 var taskSpawnTimer: float = 0.0
 
 var allBunkerTasks: Array[Node] = []
@@ -57,13 +57,19 @@ func breakRandomBunkerTask() -> void:
 		var chosenTask = workingTasks.pick_random()
 		chosenTask.breakTask()
 		activeBrokenTasks.append(chosenTask)
+		
+		if chosenTask.taskName == "FuseBox":
+			get_tree().call_group("bunkerLightsGroup", "setLightPower", false)
 		# tts "Warning: Component Failure Detected"
 
 func _on_taskRepaired(task: Interactable) -> void:
 	activeBrokenTasks.erase(task)
 	totalTasksCompleted += 1
 	
-	currentMaxCap = max(currentMaxCap - 10.0, 15.0) # Floor at 15s so it never goes negative
+	if task.taskName == "FuseBox":
+		get_tree().call_group("bunkerLightsGroup", "setLightPower", true)
+	
+	currentMaxCap = max(currentMaxCap - 10.0, 15.0) # doesnt go less than 15 sec
 	
 	timeLeft = currentMaxCap
 	
@@ -71,9 +77,9 @@ func _on_taskRepaired(task: Interactable) -> void:
 	
 func adjustDifficultyScaling() -> void:
 	if currentMaxCap > 200:
-		taskSpawnCooldown = 25.0
+		taskSpawnCooldown = 15.0
 	elif currentMaxCap > 100:
-		taskSpawnCooldown = 12.0
+		taskSpawnCooldown = 10.0
 	else:
 		taskSpawnCooldown = 5.0 
 
