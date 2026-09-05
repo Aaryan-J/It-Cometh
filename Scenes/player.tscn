@@ -5,8 +5,17 @@
 [ext_resource type="Script" uid="uid://chma36bn74x18" path="res://Scripts/Player/HUD/timerLabel.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://drvcrdrmh0q2d" path="res://Scripts/Player/HUD/taskAlert.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://b3iryrruimdjt" path="res://Scripts/Tasks/minigameWindow.gd" id="5_fkybt"]
+[ext_resource type="Shader" uid="uid://cc4xaigreaast" path="res://Assets/retro.gdshader" id="6_x3wgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbo6d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sbo6d"]
+shader = ExtResource("6_x3wgy")
+shader_parameter/grainAmount = 0.10000000149012
+shader_parameter/grainSize = 5.30800024887012
+shader_parameter/vignetteIntensity = 0.5390000256025
+shader_parameter/vignetteOpacity = 0.19600000931
+shader_parameter/tintColor = Color(1, 1, 1, 1)
 
 [node name="Player" type="CharacterBody3D" unique_id=140174376]
 script = ExtResource("1_v0iea")
@@ -15,16 +24,14 @@ script = ExtResource("1_v0iea")
 shape = SubResource("CapsuleShape3D_sbo6d")
 debug_color = Color(0, 0.6, 0.69803923, 0.8352941)
 
-[node name="head" type="Node3D" parent="." unique_id=742897931]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=25676551]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7105324, 0)
 script = ExtResource("2_cvnsp")
 
-[node name="Camera3D" type="Camera3D" parent="head" unique_id=25676551]
-
-[node name="interactionRay" type="RayCast3D" parent="head/Camera3D" unique_id=1978045571]
+[node name="interactionRay" type="RayCast3D" parent="Camera3D" unique_id=1978045571]
 target_position = Vector3(0, 0, -5)
 
-[node name="Flashlight" type="SpotLight3D" parent="head/Camera3D" unique_id=1809673017]
+[node name="Flashlight" type="SpotLight3D" parent="Camera3D" unique_id=1809673017]
 transform = Transform3D(1, 0, 0, 0, 0.99845177, -0.055623263, 0, 0.055623263, 0.99845177, 0, -0.24761403, -0.020839214)
 light_energy = 6.13
 shadow_enabled = true
@@ -115,5 +122,17 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "FIX COMPONENT"
+
+[node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=2146658965]
+layer = 10
+
+[node name="ShaderRect" type="ColorRect" parent="PostProcessingLayer" unique_id=160638049]
+material = SubResource("ShaderMaterial_sbo6d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="pressed" from="HUD/MinigameWindow/BGPanel/FixButton" to="HUD/MinigameWindow" method="_on_fix_button_pressed"]

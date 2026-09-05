@@ -2,10 +2,11 @@ extends Node3D
 
 var sensitivity = 0.2
 
-@onready var interactionRay: RayCast3D = $Camera3D/interactionRay
+@onready var interactionRay: RayCast3D = $interactionRay
 @onready var interactionPrompt: Label = $"../HUD/InteractionPrompt"
 @onready var gameManager = get_tree().get_first_node_in_group("gameManagerGroup")
 @onready var crosshair: ColorRect = $"../HUD/Crosshair"
+@onready var flashlight: SpotLight3D = $Flashlight
 
 var isDontLookBackActive: bool = false
 var startingYRotation: float = 0.0
@@ -44,6 +45,11 @@ func _input(event: InputEvent) -> void:
 	# TEMPORARY REMOVE LATER
 	if Input.is_key_pressed(KEY_T) and not isDontLookBackActive:
 		startDontLookBackEvent()
+		
+	# flashlight
+	if Input.is_action_just_pressed("flashlight"):
+		if flashlight:
+			flashlight.visible = !flashlight.visible
 
 func _process(delta: float) -> void:
 	handleHUDPrompts()

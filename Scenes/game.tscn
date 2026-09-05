@@ -7,17 +7,26 @@
 [ext_resource type="PackedScene" uid="uid://ridid6g21w51" path="res://Scenes/lightFixture.tscn" id="5_wowpa"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
-ambient_light_source = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+ambient_light_energy = 0.2
 tonemap_mode = 3
-sdfgi_enabled = true
 sdfgi_use_occlusion = true
 fog_enabled = true
+fog_mode = 1
 fog_light_color = Color(0.14274892, 0.15815115, 0.16331336, 1)
-fog_density = 0.05
+fog_light_energy = 0.0
+fog_density = 0.5
+fog_depth_curve = 0.25881642
+fog_depth_begin = 3.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_g35c3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yrk3d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfbvh"]
+albedo_color = Color(0.12941177, 0.12941177, 0.12941177, 1)
+metallic_specular = 0.03
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sbo6d"]
 size = Vector3(2.7, 1, 0.4)
@@ -94,12 +103,12 @@ shape = SubResource("BoxShape3D_yrk3d")
 
 [node name="roof" type="StaticBody3D" parent="Walls" unique_id=1020199753]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 3.3, -10.1, 7.499999, -8.400001)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/roof" unique_id=293309939]
 transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)
 gi_mode = 2
 mesh = SubResource("BoxMesh_g35c3")
+surface_material_override/0 = SubResource("StandardMaterial3D_qfbvh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/roof" unique_id=875131214]
 transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)

@@ -9,7 +9,7 @@ func openMinigame(taskNode: Interactable) -> void:
 	currentActiveTask = taskNode
 	show()
 	
-	get_parent().get_parent().get_node("head/Camera3D").set_process_input(false)
+	get_parent().get_parent().get_node("Camera3D").set_process_input(false)
 	get_parent().get_parent().set_physics_process(false)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -20,7 +20,7 @@ func openMinigame(taskNode: Interactable) -> void:
 	
 func closeMinigame(successfullyFixed: bool) -> void:
 	hide()
-	get_parent().get_parent().get_node("head/Camera3D").set_process_input(true)
+	get_parent().get_parent().get_node("Camera3D").set_process_input(true)
 	get_parent().get_parent().set_physics_process(true)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
