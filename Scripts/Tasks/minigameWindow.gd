@@ -1,27 +1,51 @@
 extends Control
 
-@onready var timerLabel: Label = $"../TimerLabel"
+# ------ references ------
 @onready var crosshair: ColorRect = $"../Crosshair"
 
+@onready var player: CharacterBody3D = get_parent().get_parent()
+@onready var camera: Node3D = $"../../Camera3D"
+
+#wire matching game 
+@onready var wireContainer: Control = $BGPanel/WireContainer
+@onready var leftWires: VBoxContainer = $"BGPanel/WireContainer/LeftWires"
+@onready var rightWires: VBoxContainer = $"BGPanel/WireContainer/RightWires"
+@onready var wireDrawingLayer: Control = $"BGPanel/WireContainer/WireDrawingLayer"
+@onready var currentLine: Line2D = $"BGPanel/WireContainer/WireDrawingLayer/CurrentLine"
+
+# ------ variables ------
 var currentActiveTask: Interactable = null
+
+# wire matching gmae
+var wireColors: Array[Color] = [Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE]
+var selectedLeftWire: Button = null
+var completedConnections: int = 0
+var requiredConnections: int = 4
+
+func _process(delta: float) -> void:
+	if is_visible_in_tree() and selectedLeftWire and currentLine:
+		if currentLine.points.size() == 2:
+			currentLine.set_point_position(1, currentLine.get_local_mouse_position())
 
 func openMinigame(taskNode: Interactable) -> void:
 	currentActiveTask = taskNode
 	show()
 	
-	get_parent().get_parent().get_node("Camera3D").set_process_input(false)
-	get_parent().get_parent().set_physics_process(false)
+	if camera: camera.set_process_input(false)
+	if player: player.set_physics_process(false)
+	
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	if crosshair: crosshair.hide()
 	
 	print("Minigame opened for: ", currentActiveTask.taskName)
+	_setup_minigame(currentActiveTask.taskName)
 	
 func closeMinigame(successfullyFixed: bool) -> void:
 	hide()
-	get_parent().get_parent().get_node("Camera3D").set_process_input(true)
-	get_parent().get_parent().set_physics_process(true)
+	if camera: camera.set_process_input(true)
+	if player: player.set_physics_process(true)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -32,6 +56,100 @@ func closeMinigame(successfullyFixed: bool) -> void:
 		
 	currentActiveTask = null
 
+func _setup_minigame(taskname: String) -> void:
+	if wireContainer: wireContainer.hide()
+	$BGPanel/FixButton.show()
+	
+	match taskname:
+		"FuseBox":
+			$BGPanel/FixButton.hide()
+			_start_wire_minigame()
+		"Radio":
+			pass # add dial tuning minigame
+		_:
+			pass
 
+func _start_wire_minigame() -> void:
+	if not wireContainer: return
+	wireContainer.show()
+	completedConnections = 0
+	for oldLine in wireDrawingLayer.get_children():
+		if oldLine != currentLine: oldLine.queue_free()
+	currentLine.clear_points()
+	selectedLeftWire = null
+	
+	for child in leftWires.get_children(): 
+		child.queue_free()
+	for child in rightWires.get_children():
+		child.queue_free()
+		
+	var leftColors = wireColors.duplicate()
+	leftColors.shuffle()
+	
+	var rightColors = wireColors.duplicate()
+	rightColors.shuffle()
+	
+	for i in range(leftColors.size()):
+		var btn = Button.new()
+		btn.text = "● W" + str(i+1)
+		btn.modulate = leftColors[i]
+		btn.set_meta("color", leftColors[i])
+		btn.pressed.connect(_on_left_wire_pressed.bind(btn))
+		leftWires.add_child(btn)
+	
+	for j in range(rightColors.size()):
+		var btn = Button.new()
+		btn.text = "W" + str(j+1) + " ●"
+		btn.modulate = rightColors[j]
+		btn.set_meta("color", rightColors[j])
+		btn.pressed.connect(_on_right_wire_pressed.bind(btn))
+		rightWires.add_child(btn)
+
+func _on_left_wire_pressed(clickedBtn: Button) -> void:
+	selectedLeftWire = clickedBtn
+	
+	currentLine.clear_points()
+	var buttonCenter = clickedBtn.global_position + (clickedBtn.size / 2)
+	currentLine.add_point(currentLine.to_local(buttonCenter))
+	currentLine.add_point(currentLine.get_local_mouse_position())
+	currentLine.default_color = clickedBtn.get_meta("color")
+	
+	print("selected left wire color: ", clickedBtn.get_meta("color"))
+	
+func _on_right_wire_pressed(clickedBtn: Button) -> void:
+	if not selectedLeftWire:
+		print ("Select a left wire first")
+		return
+	
+	var leftColor = selectedLeftWire.get_meta("color")
+	var rightColor = clickedBtn.get_meta("color")
+	
+	if leftColor == rightColor:
+		var finalLine = Line2D.new()
+		wireDrawingLayer.add_child(finalLine)
+	
+		finalLine.default_color = leftColor
+		finalLine.width = currentLine.width
+	
+		var startPos: Vector2 = wireDrawingLayer.make_canvas_position_local(selectedLeftWire.global_position + (selectedLeftWire.size / 2))
+		var endPos: Vector2 = wireDrawingLayer.make_canvas_position_local(clickedBtn.global_position + (clickedBtn.size / 2))
+	
+		finalLine.add_point(finalLine.to_local(selectedLeftWire.global_position + (selectedLeftWire.size / 2)))
+		finalLine.add_point(finalLine.to_local(clickedBtn.global_position + (clickedBtn.size / 2)))
+	
+		selectedLeftWire.disabled = true
+		clickedBtn.disabled = true
+		selectedLeftWire = null
+		currentLine.clear_points()
+		completedConnections += 1
+	
+		if completedConnections >= requiredConnections:
+			closeMinigame(true)
+	else:
+		print("Wrong color combination. Try again")
+		selectedLeftWire = null
+		currentLine.clear_points()
+	
+	
 func _on_fix_button_pressed() -> void:
 	closeMinigame(true)

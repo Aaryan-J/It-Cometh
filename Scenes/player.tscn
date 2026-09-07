@@ -123,6 +123,51 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "FIX COMPONENT"
 
+[node name="WireContainer" type="Control" parent="HUD/MinigameWindow/BGPanel" unique_id=1092595186]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WireDrawingLayer" type="Control" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=1340292087]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CurrentLine" type="Line2D" parent="HUD/MinigameWindow/BGPanel/WireContainer/WireDrawingLayer" unique_id=326860364]
+width = 4.0
+
+[node name="LeftWires" type="VBoxContainer" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=1598925974]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 124.0
+offset_bottom = -5.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="RightWires" type="VBoxContainer" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=1398188923]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = 5.0
+offset_right = -8.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
 [node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=2146658965]
 layer = 10
 
