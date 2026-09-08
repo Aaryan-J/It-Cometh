@@ -31,15 +31,29 @@ var requiredConnections: int = 4
 # dial tuning minigame
 var targetFrequency: float = 0
 var frequencyTolerance: float = 0.3
+
 var isStabilizing: bool = false
 var stabilizerTime: float = 0
-
+const STABILIZE_DURATION: float = 2.5
 
 func _process(delta: float) -> void:
 	if is_visible_in_tree() and selectedLeftWire and currentLine:
 		if currentLine.points.size() == 2:
 			currentLine.set_point_position(1, currentLine.get_local_mouse_position())
+			
+	if is_visible_in_tree() and radioContainer and radioContainer.visible and isStabilizing:
+		stabilizerTime += delta
+		
+		if currentLabel:
+			var displayVal = snapped(dialSlider.value, 0.1)
+			var progressPct = int((stabilizerTime / STABILIZE_DURATION) * 100)
+			currentLabel.text = "STABILIZING: %d%% (%0.1f MHz)" % [progressPct, displayVal]
+			
+		if stabilizerTime >= STABILIZE_DURATION:
+			isStabilizing = false
+			closeMinigame(true)
 
+# helped functions
 func openMinigame(taskNode: Interactable) -> void:
 	currentActiveTask = taskNode
 	show()
@@ -184,16 +198,17 @@ func _start_radio_minigame() -> void:
 
 func _on_dial_value_changed(value: float) -> void:
 	var displayVal = snapped(value, 0.1)
-	if currentLabel: currentLabel.text = "Current: " + str(displayVal) + " Mhz"
+	if currentLabel: currentLabel.text = "Current: " + str(displayVal) + " MHz"
 	
 	if abs(displayVal - targetFrequency) <= frequencyTolerance:
-		_check_radio_completion()
-	
-func _check_radio_completion() -> void:
-	print("radio signal aligned")
-	closeMinigame(true)
-
-
+		if not isStabilizing:
+			isStabilizing = true
+			stabilizerTime = 0.0
+		else:
+			if isStabilizing:
+				isStabilizing = false
+				if currentLabel:
+					currentLabel.text = "Current: " + str(displayVal) + " MHz"
 	
 func _on_fix_button_pressed() -> void:
 	closeMinigame(true)
