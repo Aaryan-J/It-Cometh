@@ -168,6 +168,62 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 20
 
+[node name="RadioContainer" type="Control" parent="HUD/MinigameWindow/BGPanel" unique_id=1020383804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TargetLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=1508757852]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 10)
+offset_transform_visual_only = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=1199180403]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -10)
+offset_transform_visual_only = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialHSlider" type="HSlider" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=326407710]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+min_value = 88.0
+max_value = 108.0
+step = 0.1
+value = 88.0
+
 [node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=2146658965]
 layer = 10
 
