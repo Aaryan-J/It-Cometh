@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5w4ju3ev3hgl"]
 
 [ext_resource type="PackedScene" uid="uid://bqjkwphhdeosm" path="res://Scenes/player.tscn" id="1_ebmjs"]
-[ext_resource type="MeshLibrary" uid="uid://b11kpy7461nle" path="res://Assets/bunker_tiles.tres" id="2_qxrlw"]
+[ext_resource type="MeshLibrary" uid="uid://17why056et1i" path="res://Assets/bunkerTiles.tres" id="3_wowpa"]
 [ext_resource type="Script" uid="uid://cjqljiwo1qkeu" path="res://Scripts/Tasks/interactable.gd" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://ddfltpoxtxvcb" path="res://Scripts/gameManager.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://ridid6g21w51" path="res://Scenes/lightFixture.tscn" id="5_wowpa"]
@@ -52,41 +52,38 @@ light_energy = 2.221
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=450789918 instance=ExtResource("1_ebmjs")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 14.125135, 2.5, -26.132935)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.125135, 2.5, -26.132935)
 
 [node name="Walls" type="Node" parent="." unique_id=1531163341]
 
-[node name="hall" type="GridMap" parent="Walls" unique_id=2022500764]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh_library = ExtResource("2_qxrlw")
+[node name="hallNew" type="GridMap" parent="Walls" unique_id=1346440310]
+mesh_library = ExtResource("3_wowpa")
 cell_size = Vector3(10, 10, 10)
 cell_octant_size = 4
 cell_center_y = false
-cell_scale = 100.0
+cell_scale = 5.0
 data = {
-"cells": PackedInt32Array(3, 65534, 1114127, 3, 65533, 1114127, 0, 65531, 393231, 1, 65531, 393231, 2, 65531, 393231, 3, 65531, 393231, 3, 65532, 1114125, 65535, 65534, 786447, 0, 65534, 786445, 1, 65534, 786447, 2, 65534, 786447, 65535, 65533, 1376271, 65535, 65532, 1376271, 65535, 65531, 1376271)
+"cells": PackedInt32Array(3, 65534, 3, 2, 65534, 3, 0, 65534, 3, 65535, 65534, 1441795, 65535, 65533, 1441795, 65535, 65532, 1441795, 65535, 65531, 655363, 0, 65531, 655363, 1, 65531, 655363, 2, 65531, 655363, 3, 65532, 1048579, 3, 65533, 1048579, 1, 65534, 655368, 3, 65531, 1441800)
 }
 
-[node name="room1" type="GridMap" parent="Walls" unique_id=392845475]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh_library = ExtResource("2_qxrlw")
+[node name="room1" type="GridMap" parent="Walls" unique_id=2059364532]
+mesh_library = ExtResource("3_wowpa")
 cell_size = Vector3(10, 10, 10)
 cell_octant_size = 4
 cell_center_y = false
-cell_scale = 100.0
+cell_scale = 5.0
 data = {
-"cells": PackedInt32Array(4, 65530, 1376271, 4, 65532, 1376271, 0, 65534, 1376271, 0, 65535, 1376271, 0, 0, 1376271, 0, 1, 393231, 0, 2, 393231, 1, 65534, 1376271, 1, 65535, 1376271, 1, 0, 1376271, 1, 1, 1376271, 1, 2, 393231, 5, 65530, 393231, 5, 65531, 1114127, 5, 65532, 1114127, 5, 65533, 1114127, 4, 65533, 786447, 65533, 2, 1114127, 65533, 3, 1114127, 65534, 1, 786447, 65534, 3, 393231, 65535, 1, 1376269, 65535, 2, 1376271, 65535, 3, 393231)
+"cells": PackedInt32Array(4, 65532, 3, 4, 65531, 1441795, 4, 65533, 1441795, 5, 65533, 3, 5, 65532, 1048579, 5, 65531, 1048579, 5, 65530, 1048579, 4, 65530, 655363, 3, 65531, 655363, 0, 65534, 1048579, 1, 65534, 1048579, 0, 0, 1048579, 0, 65535, 1048579, 1, 65535, 1048579, 1, 0, 1048579, 1, 1, 1048579, 0, 1, 3, 0, 2, 3, 1, 2, 3, 65533, 0, 1048579, 65534, 0, 3, 65534, 1, 1441795)
 }
 
-[node name="room2" type="GridMap" parent="Walls" unique_id=1343523380]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh_library = ExtResource("2_qxrlw")
+[node name="room2" type="GridMap" parent="Walls" unique_id=773448686]
+mesh_library = ExtResource("3_wowpa")
 cell_size = Vector3(10, 10, 10)
 cell_octant_size = 4
 cell_center_y = false
-cell_scale = 100.0
+cell_scale = 5.0
 data = {
-"cells": PackedInt32Array(4, 65532, 393231, 4, 65531, 393231, 65533, 0, 1376271, 65533, 1, 786445, 65534, 0, 393231, 65534, 1, 1114127)
+"cells": PackedInt32Array(65535, 2, 1048579, 65535, 3, 3, 65534, 3, 3, 65533, 3, 1441795, 65533, 1, 8, 65533, 2, 1441795, 65534, 1, 655363, 65535, 1, 1441800)
 }
 
 [node name="floor" type="StaticBody3D" parent="Walls" unique_id=1508359047]
@@ -102,7 +99,7 @@ transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)
 shape = SubResource("BoxShape3D_yrk3d")
 
 [node name="roof" type="StaticBody3D" parent="Walls" unique_id=1020199753]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 3.3, -10.1, 7.499999, -8.400001)
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 3.3, -10.1, 11.299999, -8.400001)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/roof" unique_id=293309939]
 transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)
@@ -113,6 +110,30 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qfbvh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/roof" unique_id=875131214]
 transform = Transform3D(41.885284, 0, 0, 0, 1, 0, 0, 0, 39.468002, 2.8, 0, -0.1)
 shape = SubResource("BoxShape3D_yrk3d")
+
+[node name="Lights" type="Node3D" parent="Walls/roof" unique_id=1067014708]
+transform = Transform3D(0.25, 0, 0, 0, 1, 0, 0, 0, 0.3030303, 2.525, -7.499999, 2.5454547)
+
+[node name="hall1" parent="Walls/roof/Lights" unique_id=1541861344 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3, 7, -22.6)
+
+[node name="hall2" parent="Walls/roof/Lights" unique_id=849337952 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3999996, 7, -22.6)
+
+[node name="hall3" parent="Walls/roof/Lights" unique_id=658779590 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.300003, 7, -39.5)
+
+[node name="hall4" parent="Walls/roof/Lights" unique_id=731489318 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 7, -39.5)
+
+[node name="hall5" parent="Walls/roof/Lights" unique_id=1087845124 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9, 7, 2)
+
+[node name="hall6" parent="Walls/roof/Lights" unique_id=642860290 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.300001, 7, 25.1)
+
+[node name="hall7" parent="Walls/roof/Lights" unique_id=764506642 instance=ExtResource("5_wowpa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.4, 7, -39.9)
 
 [node name="Tasks" type="Node" parent="." unique_id=1332467874]
 
@@ -143,24 +164,3 @@ shape = SubResource("BoxShape3D_sbo6d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, 2.9802322e-08)
 mesh = SubResource("BoxMesh_0mr6a")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
-
-[node name="hall1" parent="." unique_id=1541861344 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3, 7, -22.6)
-
-[node name="hall2" parent="." unique_id=849337952 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3999996, 7, -22.6)
-
-[node name="hall3" parent="." unique_id=658779590 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.300003, 7, -39.5)
-
-[node name="hall4" parent="." unique_id=731489318 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 7, -39.5)
-
-[node name="hall5" parent="." unique_id=1087845124 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9, 7, 2)
-
-[node name="hall6" parent="." unique_id=642860290 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.300001, 7, 25.1)
-
-[node name="hall7" parent="." unique_id=764506642 instance=ExtResource("5_wowpa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.4, 7, -39.9)

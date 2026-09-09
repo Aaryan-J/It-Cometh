@@ -35,8 +35,7 @@ target_position = Vector3(0, 0, -5)
 transform = Transform3D(1, 0, 0, 0, 0.99845177, -0.055623263, 0, 0.055623263, 0.99845177, 0, -0.24761403, -0.020839214)
 light_energy = 6.13
 shadow_enabled = true
-spot_range = 15.0
-spot_angle = 30.0
+spot_range = 20.0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=664364098]
 
