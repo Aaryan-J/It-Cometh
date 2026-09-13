@@ -36,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99845177, -0.055623263, 0, 0.055623263, 0.
 light_energy = 6.13
 shadow_enabled = true
 spot_range = 20.0
+spot_angle = 60.0
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=664364098]
 
@@ -177,14 +178,14 @@ grow_vertical = 2
 
 [node name="TargetLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=1508757852]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
+offset_top = 20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
-offset_transform_enabled = true
 offset_transform_position = Vector2(0, 10)
 offset_transform_visual_only = false
 horizontal_alignment = 1
@@ -192,17 +193,16 @@ vertical_alignment = 1
 
 [node name="CurrentLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=1199180403]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
 offset_right = 20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-offset_transform_enabled = true
 offset_transform_position = Vector2(0, -10)
 offset_transform_visual_only = false
 horizontal_alignment = 1
@@ -222,6 +222,106 @@ min_value = 88.0
 max_value = 108.0
 step = 0.1
 value = 88.0
+
+[node name="OxygenContainer" type="Control" parent="HUD/MinigameWindow/BGPanel" unique_id=1357403529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PressureBar" type="ProgressBar" parent="HUD/MinigameWindow/BGPanel/OxygenContainer" unique_id=1963664030]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -13.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VentButton" type="Button" parent="HUD/MinigameWindow/BGPanel/OxygenContainer" unique_id=1290560130]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = 110.0
+offset_right = 50.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "VENT VALVE"
+
+[node name="StatusLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/OxygenContainer" unique_id=1023945844]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -149.5
+offset_top = 20.0
+offset_right = 149.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Keep pressure in safe zone (40% - 60%)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TerminalContainer" type="Control" parent="HUD/MinigameWindow/BGPanel" unique_id=558878773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TerminalDisplay" type="Label" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=1656005255]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CodeInput" type="LineEdit" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=2074413150]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -15.5
+offset_right = 75.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ProgressLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=1262133895]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -43.0
+offset_right = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=2146658965]
 layer = 10

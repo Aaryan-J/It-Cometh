@@ -19,6 +19,17 @@ extends Control
 @onready var targetLabel: Label = $BGPanel/RadioContainer/TargetLabel
 @onready var currentLabel: Label = $BGPanel/RadioContainer/CurrentLabel
 
+# oxygen minigame
+@onready var oxygenContainer: Control = $BGPanel/OxygenContainer
+@onready var pressureBar: ProgressBar = $BGPanel/OxygenContainer/PressureBar
+@onready var statusLabel: Label = $BGPanel/OxygenContainer/StatusLabel
+
+# terminal minigame
+@onready var terminalContainer: Control = $BGPanel/TerminalContainer
+@onready var terminalDisplay: Label = $BGPanel/TerminalContainer/TerminalDisplay
+@onready var codeInput: LineEdit = $BGPanel/TerminalContainer/CodeInput
+@onready var progressLabel: Label = $BGPanel/TerminalContainer/ProgressLabel
+
 # ------ variables ------
 var currentActiveTask: Interactable = null
 
@@ -36,11 +47,26 @@ var isStabilizing: bool = false
 var stabilizerTime: float = 0
 const STABILIZE_DURATION: float = 2.5
 
+# oxygen minigame
+var currentPressure: float = 50
+var oxygenHoldTimer: float = 0
+const OXYGEN_HOLD_DURATION: float = 3
+
+const SAFE_ZONE_LOW: float = 40
+const SAFE_ZONE_HIGH: float = 60
+
+# terminal minigame
+var targetCode: String = ""
+var terminalProgress: int = 0
+const REQUIRED_TERMINAL_STEPS: int = 3 
+
 func _process(delta: float) -> void:
+	# wire game
 	if is_visible_in_tree() and selectedLeftWire and currentLine:
 		if currentLine.points.size() == 2:
 			currentLine.set_point_position(1, currentLine.get_local_mouse_position())
-			
+	
+	# radio game
 	if is_visible_in_tree() and radioContainer and radioContainer.visible and isStabilizing:
 		stabilizerTime += delta
 		
@@ -52,8 +78,31 @@ func _process(delta: float) -> void:
 		if stabilizerTime >= STABILIZE_DURATION:
 			isStabilizing = false
 			closeMinigame(true)
+	
+	# oxygen game
+	if is_visible_in_tree() and oxygenContainer and oxygenContainer.visible:
+		currentPressure += delta * 12
+		
+		if currentPressure >= 100 or currentPressure <= 0:
+			currentPressure = 50
+			oxygenHoldTimer = 0
+			if statusLabel: statusLabel.text = "CRITICAL FAILURE: Pressure reset"
+			
+		if pressureBar: pressureBar.value = currentPressure
+		
+		if currentPressure >= SAFE_ZONE_LOW and currentPressure <= SAFE_ZONE_HIGH:
+			oxygenHoldTimer += delta
+			var progress_pct = int((oxygenHoldTimer / OXYGEN_HOLD_DURATION) * 100)
+			if statusLabel: statusLabel.text = "STABILIZING O2: %d%%" % progress_pct
+			
+			if oxygenHoldTimer >= OXYGEN_HOLD_DURATION:
+				closeMinigame(true)
+		
+		else:
+			oxygenHoldTimer = 0
+			if statusLabel: statusLabel.text = "WARNING: Stabilize pressure between 40% to 60%!"
 
-# helped functions
+# helper functions
 func openMinigame(taskNode: Interactable) -> void:
 	currentActiveTask = taskNode
 	show()
@@ -86,15 +135,26 @@ func closeMinigame(successfullyFixed: bool) -> void:
 func _setup_minigame(taskname: String) -> void:
 	if wireContainer: wireContainer.hide()
 	if radioContainer: radioContainer.hide()
+	if oxygenContainer: oxygenContainer.hide()
+	if terminalContainer: terminalContainer.hide()
 	$BGPanel/FixButton.show()
 	
 	match taskname:
 		"FuseBox":
-			$BGPanel/FixButton.hide()
+			if $BGPanel/FixButton: $BGPanel/FixButton.hide()
 			_start_wire_minigame()
+			
 		"Radio":
-			$BGPanel/FixButton.hide()
+			if $BGPanel/FixButton: $BGPanel/FixButton.hide()
 			_start_radio_minigame()
+			
+		"OxygenFilter":
+			if $BGPanel/FixButton: $BGPanel/FixButton.hide()
+			_start_oxygen_minigame()
+			
+		"MainframeTerminal":
+			if $BGPanel/FixButton: $BGPanel/FixButton.hide()
+			_start_terminal_minigame()
 		_:
 			pass
 
@@ -102,11 +162,16 @@ func _setup_minigame(taskname: String) -> void:
 func _start_wire_minigame() -> void:
 	if not wireContainer: return
 	wireContainer.show()
+	
 	completedConnections = 0
-	for oldLine in wireDrawingLayer.get_children():
-		if oldLine != currentLine: oldLine.queue_free()
-	currentLine.clear_points()
 	selectedLeftWire = null
+	
+	for oldLine in wireDrawingLayer.get_children():
+		if oldLine != currentLine: 
+			oldLine.queue_free()
+	if currentLine:
+		currentLine.clear_points()
+	
 	
 	for child in leftWires.get_children(): 
 		child.queue_free()
@@ -209,6 +274,75 @@ func _on_dial_value_changed(value: float) -> void:
 				isStabilizing = false
 				if currentLabel:
 					currentLabel.text = "Current: " + str(displayVal) + " MHz"
+
+# oxygen game
+func _start_oxygen_minigame() -> void:
+	if not oxygenContainer: return
+	oxygenContainer.show()
 	
+	currentPressure = 50
+	oxygenHoldTimer = 0
+	if pressureBar: pressureBar.value = currentPressure
+	if statusLabel: statusLabel.text = "Stabilize pressure between 40% to 60%!"
+	
+	var ventBtn = $BGPanel/OxygenContainer/VentButton
+	if ventBtn:
+		if ventBtn.pressed.is_connected(_on_vent_button_pressed):
+			ventBtn.pressed.disconnect(_on_vent_button_pressed)
+		ventBtn.pressed.connect(_on_vent_button_pressed)
+		
+func _on_vent_button_pressed() -> void:
+	currentPressure -= 15
+	print("Valve vented. Current pressure score: ", currentPressure)
+
+# terminal game
+func _start_terminal_minigame() -> void:
+	if not terminalContainer: return
+	terminalContainer.show()
+	
+	terminalProgress = 0
+	_update_terminal_display()
+	
+	if codeInput:
+		codeInput.text = ""
+		codeInput.grab_focus()
+		if codeInput.text_submitted.is_connected(_on_code_submitted):
+			codeInput.text_submitted.disconnect(_on_code_submitted)
+		codeInput.text_submitted.connect(_on_code_submitted)
+
+func _update_terminal_display() -> void:
+	if terminalDisplay:
+		terminalDisplay.text = "INPUT OVERRIDE KEY"
+	if progressLabel: 
+		progressLabel.text = "AUTHENTICATED BLOCKS: %d/3" % [terminalProgress]
+	
+func _on_code_submitted(submitted_text: String) -> void:
+	var manager = get_tree().get_first_node_in_group("gameManagerGroup")
+	if not manager: return
+	
+	var cleanInput = submitted_text.strip_edges()
+	
+	if manager.activeTerminalCode.has(cleanInput) and cleanInput != "":
+		var codeIndex = manager.activeTerminalCode.find(cleanInput)
+		manager.activeTerminalCode[codeIndex] = "" 
+		
+		terminalProgress += 1
+		print("Total authenticated: ", terminalProgress)
+		
+		if codeInput: codeInput.text = ""
+		
+		if terminalProgress >= 3:
+			print("Mainframe fully functional.")
+			closeMinigame(true)
+		else:
+			_update_terminal_display()
+			if codeInput: codeInput.grab_focus()
+	else:
+		print("COMBINATION REJECTED. Invalid key sequence.")
+		if codeInput:
+			codeInput.text = ""
+			codeInput.grab_focus()
+
+# fix button
 func _on_fix_button_pressed() -> void:
 	closeMinigame(true)

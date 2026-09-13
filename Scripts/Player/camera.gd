@@ -40,6 +40,7 @@ func _input(event: InputEvent) -> void:
 		if interactionRay and interactionRay.is_colliding():
 			var target = interactionRay.get_collider()
 			if target is Interactable:
+				print("raycast hit object: ", target.taskName)
 				target.interact(get_parent())
 				
 	# TEMPORARY REMOVE LATER
@@ -77,9 +78,13 @@ func triggerLookBackPenalty() -> void:
 func handleHUDPrompts() -> void:
 	if interactionRay and interactionRay.is_colliding():
 		var target = interactionRay.get_collider()
-		if target is Interactable and target.isBroken:
-			interactionPrompt.text = "[E] Repair " + target.taskName
-			return
+		if target is Interactable:
+			if target.isBroken:
+				interactionPrompt.text = "[E] Repair " + target.taskName
+				return
+			elif target.taskName == "TerminalCodeNote":
+				interactionPrompt.text = "[E] Read Sticky Note"
+				return
 			
 	if interactionPrompt: interactionPrompt.text = ""
 	if crosshair: crosshair.color = Color.WHITE

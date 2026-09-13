@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cc71hytok6yau"]
+
+[ext_resource type="PackedScene" uid="uid://bbpn84j863hv5" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bed_Bunker.glb" id="1_8tf50"]
+[ext_resource type="PackedScene" uid="uid://c2jobfbv5n85n" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bed_Sheet_A.glb" id="2_jjywp"]
+[ext_resource type="PackedScene" uid="uid://cycuhufr8vheg" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bed_Sheet_B.glb" id="3_x7oh6"]
+[ext_resource type="PackedScene" uid="uid://bltjndskyl4e6" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_BunkerWall_2m_A.glb" id="4_281vx"]
+[ext_resource type="PackedScene" uid="uid://boqcxilxwyyyj" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_BunkerWall_2m_B.glb" id="5_0owkc"]
+[ext_resource type="PackedScene" uid="uid://6a2n1huiccw6" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_BunkerWall_2m_C.glb" id="6_o2rnt"]
+[ext_resource type="PackedScene" uid="uid://dw6ljpt2aoj" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_BunkerWall_4m.glb" id="7_kokge"]
+[ext_resource type="PackedScene" uid="uid://deblru7i6afkv" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_BunkerWall_Corner.glb" id="8_ow4lq"]
+[ext_resource type="PackedScene" uid="uid://7ta5tphb1tcq" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bunker_DoorWay.glb" id="9_n4ysu"]
+[ext_resource type="PackedScene" uid="uid://dp2xb7g8u34oe" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bunker_Pillar.glb" id="10_lps8j"]
+[ext_resource type="PackedScene" uid="uid://fedmium7weuh" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Chair_Bunker.glb" id="11_aqvqy"]
+[ext_resource type="PackedScene" uid="uid://bqqxc3xl7eg1y" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Cooker_Kitchen.glb" id="12_4cww4"]
+[ext_resource type="PackedScene" uid="uid://dgjdubsemdfe4" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Crate_A.glb" id="13_0ol3y"]
+[ext_resource type="PackedScene" uid="uid://bjawhqouotmrr" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Crate_A_Stack.glb" id="14_owr77"]
+[ext_resource type="PackedScene" uid="uid://o11irvowo1b8" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Kettle_Kitchen.glb" id="15_pnkbc"]
+[ext_resource type="PackedScene" uid="uid://sl578jdd0ymw" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Mug_Kitchen.glb" id="16_yuq6q"]
+[ext_resource type="PackedScene" uid="uid://cbkdqgyfl5n34" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Pan_Kitchen.glb" id="17_05rxr"]
+[ext_resource type="PackedScene" uid="uid://c53d7rcodj7xt" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Pot_Kitchen.glb" id="18_onqqm"]
+[ext_resource type="PackedScene" uid="uid://blbnjdnooummj" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Shelves_Bunker.glb" id="19_0kkbd"]
+[ext_resource type="PackedScene" uid="uid://btluoqsnfdyyp" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Table_Bunker.glb" id="20_yac8y"]
+[ext_resource type="PackedScene" uid="uid://bclyxkfrcyp6j" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_TrenchToBunker_Door.glb" id="21_3e225"]
+
+[node name="Node3D" type="Node3D" unique_id=1453040327]
+
+[node name="SM_Bed_Bunker" parent="." unique_id=710875652 instance=ExtResource("1_8tf50")]
+
+[node name="SM_Bed_Sheet_A" parent="." unique_id=1689484275 instance=ExtResource("2_jjywp")]
+
+[node name="SM_Bed_Sheet_B" parent="." unique_id=2144125204 instance=ExtResource("3_x7oh6")]
+
+[node name="SM_BunkerWall_2m_A" parent="." unique_id=2027962640 instance=ExtResource("4_281vx")]
+
+[node name="SM_BunkerWall_2m_B" parent="." unique_id=717395517 instance=ExtResource("5_0owkc")]
+
+[node name="SM_BunkerWall_2m_C" parent="." unique_id=1366686405 instance=ExtResource("6_o2rnt")]
+
+[node name="SM_BunkerWall_4m2" parent="." unique_id=1302911468 instance=ExtResource("7_kokge")]
+
+[node name="SM_BunkerWall_Corner" parent="." unique_id=73439822 instance=ExtResource("8_ow4lq")]
+
+[node name="SM_Bunker_DoorWay" parent="." unique_id=1147050591 instance=ExtResource("9_n4ysu")]
+
+[node name="SM_Bunker_Pillar" parent="." unique_id=1224634431 instance=ExtResource("10_lps8j")]
+
+[node name="SM_Chair_Bunker" parent="." unique_id=230623140 instance=ExtResource("11_aqvqy")]
+
+[node name="SM_Cooker_Kitchen" parent="." unique_id=1982931230 instance=ExtResource("12_4cww4")]
+
+[node name="SM_Crate_A2" parent="." unique_id=304987228 instance=ExtResource("13_0ol3y")]
+
+[node name="SM_Crate_A_Stack" parent="." unique_id=2034713560 instance=ExtResource("14_owr77")]
+
+[node name="SM_Kettle_Kitchen2" parent="." unique_id=186668185 instance=ExtResource("15_pnkbc")]
+
+[node name="SM_Mug_Kitchen" parent="." unique_id=1347893321 instance=ExtResource("16_yuq6q")]
+
+[node name="SM_Pan_Kitchen" parent="." unique_id=331313990 instance=ExtResource("17_05rxr")]
+
+[node name="SM_Pot_Kitchen" parent="." unique_id=84525387 instance=ExtResource("18_onqqm")]
+
+[node name="SM_Shelves_Bunker" parent="." unique_id=628047784 instance=ExtResource("19_0kkbd")]
+
+[node name="SM_Table_Bunker2" parent="." unique_id=840753349 instance=ExtResource("20_yac8y")]
+
+[node name="SM_TrenchToBunker_Door" parent="." unique_id=2066532317 instance=ExtResource("21_3e225")]

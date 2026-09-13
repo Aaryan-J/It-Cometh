@@ -15,9 +15,9 @@ sdfgi_use_occlusion = true
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.14274892, 0.15815115, 0.16331336, 1)
-fog_light_energy = 0.0
-fog_density = 0.5
-fog_depth_curve = 0.25881642
+fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_curve = 0.2030635
 fog_depth_begin = 3.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_g35c3"]
@@ -36,6 +36,10 @@ size = Vector3(2.6000001, 1, 0.4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrk3d"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0mr6a"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbo6d"]
 
 [node name="Game" type="Node3D" unique_id=1197174109]
 
@@ -152,7 +156,7 @@ mesh = SubResource("BoxMesh_0mr6a")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
 
 [node name="FuseBox" type="StaticBody3D" parent="Tasks" unique_id=1893368226 groups=["bunkerTasks"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.900001, 2.5, -16.35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.900001, 4.2, -16.35)
 script = ExtResource("3_wrm1d")
 taskName = "FuseBox"
 
@@ -164,3 +168,71 @@ shape = SubResource("BoxShape3D_sbo6d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, 2.9802322e-08)
 mesh = SubResource("BoxMesh_0mr6a")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
+
+[node name="OxygenFilter" type="StaticBody3D" parent="Tasks" unique_id=1178879756 groups=["bunkerTasks"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2, 4.4, -16.35)
+script = ExtResource("3_wrm1d")
+taskName = "OxygenFilter"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tasks/OxygenFilter" unique_id=378368028]
+transform = Transform3D(0.19999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.8500004, 0, 0.29999924)
+shape = SubResource("BoxShape3D_sbo6d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tasks/OxygenFilter/CollisionShape3D" unique_id=1159899329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, 2.9802322e-08)
+mesh = SubResource("BoxMesh_0mr6a")
+surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
+
+[node name="MainframeTerminal" type="StaticBody3D" parent="Tasks" unique_id=1322478593 groups=["bunkerTasks"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2, 4.4, -16.35)
+script = ExtResource("3_wrm1d")
+taskName = "MainframeTerminal"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tasks/MainframeTerminal" unique_id=1704023281]
+transform = Transform3D(0.19999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.8500004, 0, 0.29999924)
+shape = SubResource("BoxShape3D_sbo6d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tasks/MainframeTerminal/CollisionShape3D" unique_id=453310349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, 2.9802322e-08)
+mesh = SubResource("BoxMesh_0mr6a")
+surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
+
+[node name="CodeNotes" type="Node" parent="." unique_id=1453216101]
+
+[node name="CodeNote1" type="StaticBody3D" parent="CodeNotes" unique_id=377952729 groups=["bunkerTasks"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.4, 45.000004, 5.3, -28.45)
+script = ExtResource("3_wrm1d")
+taskName = "TerminalCodeNote"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CodeNotes/CodeNote1" unique_id=37837186]
+transform = Transform3D(0.009999993, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0mr6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CodeNotes/CodeNote1/CollisionShape3D" unique_id=1362135877]
+mesh = SubResource("BoxMesh_sbo6d")
+
+[node name="CodeNote2" type="StaticBody3D" parent="CodeNotes" unique_id=1098456008 groups=["bunkerTasks"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.4, -24.999998, 5.3, 33.55)
+script = ExtResource("3_wrm1d")
+taskName = "TerminalCodeNote"
+noteIndex = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CodeNotes/CodeNote2" unique_id=88326639]
+transform = Transform3D(0.009999993, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0mr6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CodeNotes/CodeNote2/CollisionShape3D" unique_id=382071234]
+mesh = SubResource("BoxMesh_sbo6d")
+
+[node name="CodeNote3" type="StaticBody3D" parent="CodeNotes" unique_id=2021286646 groups=["bunkerTasks"]]
+transform = Transform3D(-4.371139e-08, 0, -1.4, 0, 1, 0, 1, 0, -6.119594e-08, -20.3, 5.3, 5.3499994)
+script = ExtResource("3_wrm1d")
+taskName = "TerminalCodeNote"
+noteIndex = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CodeNotes/CodeNote3" unique_id=1602668328]
+transform = Transform3D(0.009999993, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_0mr6a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CodeNotes/CodeNote3/CollisionShape3D" unique_id=121663935]
+mesh = SubResource("BoxMesh_sbo6d")

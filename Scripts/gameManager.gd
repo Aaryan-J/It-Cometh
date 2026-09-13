@@ -17,6 +17,8 @@ var taskSpawnTimer: float = 0.0
 
 var allBunkerTasks: Array[Node] = []
 
+var activeTerminalCode: Array[String] = ["", "", ""]
+
 # ---------------
 func _ready() -> void:
 	add_to_group("gameManagerGroup")
@@ -24,11 +26,12 @@ func _ready() -> void:
 	currentMaxCap = totalApocalypseTime
 	timeLeft = currentMaxCap
 	
-	allBunkerTasks = get_tree().get_nodes_in_group("bunkerTasks")
+	var scannedNodes = get_tree().get_nodes_in_group("bunkerTasks")
 	
-	for task in allBunkerTasks:
-		if task is Interactable:
-			task.taskFixed.connect(_on_taskRepaired)
+	for node in scannedNodes:
+		if node is Interactable and node.taskName != "TerminalCodeNote":
+			allBunkerTasks.append(node)
+			node.taskFixed.connect(_on_taskRepaired)
 	
 	print("Bunker systems online. Initial timer full at: 5:00")
 
@@ -60,6 +63,12 @@ func breakRandomBunkerTask() -> void:
 		
 		if chosenTask.taskName == "FuseBox":
 			get_tree().call_group("bunkerLightsGroup", "setLightPower", false)
+		elif chosenTask.taskName == "MainframeTerminal":
+			for i in range(3):
+				var generatedSegment = ""
+				for j in range(4):
+					generatedSegment += str(randi() % 10)
+				activeTerminalCode[i] = generatedSegment
 		# tts "Warning: Component Failure Detected"
 
 func _on_taskRepaired(task: Interactable) -> void:
@@ -77,9 +86,9 @@ func _on_taskRepaired(task: Interactable) -> void:
 	
 func adjustDifficultyScaling() -> void:
 	if currentMaxCap > 200:
-		taskSpawnCooldown = 15.0
+		taskSpawnCooldown = 25.0
 	elif currentMaxCap > 100:
-		taskSpawnCooldown = 10.0
+		taskSpawnCooldown = 15.0
 	else:
 		taskSpawnCooldown = 5.0 
 

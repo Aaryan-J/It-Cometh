@@ -7,8 +7,17 @@ signal taskFixed(taskNode)
 
 @export var taskName: String = "Bunker Component"
 @export var isBroken: bool = false
+@export_range(0,2) var noteIndex: int = 0
 
 func interact(playerNode: CharacterBody3D):
+	if taskName == "TerminalCodeNote":
+		var manager = get_tree().get_first_node_in_group("gameManagerGroup")
+		if manager and manager.activeTerminalCode[noteIndex] != "":
+			print("STICKY NOTE ", noteIndex + 1, ": Reading sequence line -> ", manager.activeTerminalCode[noteIndex]) # put UI print label thingy here
+		else:
+			print("STICKY NOTE BLANK")
+		return
+	
 	if isBroken:
 		startMinigame(playerNode)
 	else:
@@ -21,7 +30,7 @@ func startMinigame(playerNode: CharacterBody3D):  # player node for when imma ad
 		minigameWindow.openMinigame(self)
 	else:
 		print("HUD minigame window not found. Auto complete task")
-		completeTask() #TODO: make sure to add minigame to this
+		completeTask()
 	
 func completeTask():
 	isBroken = false
