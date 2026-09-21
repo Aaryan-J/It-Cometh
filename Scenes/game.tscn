@@ -1,10 +1,23 @@
 [gd_scene format=3 uid="uid://5w4ju3ev3hgl"]
 
 [ext_resource type="PackedScene" uid="uid://bqjkwphhdeosm" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="AudioStream" uid="uid://bl25x1t5m600y" path="res://Assets/Audio/SFX/Creepy Sound Sfx.mp3" id="2_85qyi"]
+[ext_resource type="AudioStream" uid="uid://dxoselyepj6xx" path="res://Assets/Audio/Music/Tense Ambience 3 Track .mp3" id="2_i6g32"]
+[ext_resource type="AudioStream" uid="uid://dgc3j0yvdpaip" path="res://Assets/Audio/SFX/Creepy Sound Sfx 2.mp3" id="3_iivbl"]
 [ext_resource type="MeshLibrary" uid="uid://17why056et1i" path="res://Assets/bunkerTiles.tres" id="3_wowpa"]
 [ext_resource type="Script" uid="uid://cjqljiwo1qkeu" path="res://Scripts/Tasks/interactable.gd" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://ddfltpoxtxvcb" path="res://Scripts/gameManager.gd" id="4_3dryh"]
+[ext_resource type="AudioStream" uid="uid://cnjeef6xe7fcf" path="res://Assets/Audio/SFX/Creepy Sound Sfx 3.mp3" id="4_7nbq1"]
+[ext_resource type="AudioStream" uid="uid://bw2crkxa1ikex" path="res://Assets/Audio/SFX/Creepy Sound Sfx 4.mp3" id="5_exi56"]
 [ext_resource type="PackedScene" uid="uid://ridid6g21w51" path="res://Scenes/lightFixture.tscn" id="5_wowpa"]
+[ext_resource type="AudioStream" uid="uid://bvu20xy1qtjdo" path="res://Assets/Audio/SFX/Creepy Sound Sfx 5.mp3" id="6_7t8sx"]
+[ext_resource type="AudioStream" uid="uid://wis3q6qh1245" path="res://Assets/Audio/SFX/Creepy Sound Sfx 6.mp3" id="7_mg4q0"]
+[ext_resource type="AudioStream" uid="uid://qj6wj8haaey2" path="res://Assets/Audio/SFX/Death Sfx 2.mp3" id="8_vm72l"]
+[ext_resource type="AudioStream" uid="uid://dka0hhwjn0uey" path="res://Assets/Audio/SFX/Death Sfx 3.mp3" id="9_22asu"]
+[ext_resource type="AudioStream" uid="uid://wifmklepa7v5" path="res://Assets/Audio/SFX/Death Sfx.mp3" id="10_fkdbe"]
+[ext_resource type="AudioStream" uid="uid://c51xalv65gg41" path="res://Assets/Audio/SFX/Jumpscare Sfx 2.mp3" id="11_81klo"]
+[ext_resource type="AudioStream" uid="uid://dmtt8olb43jnn" path="res://Assets/Audio/SFX/Jumpscare SFX 3.mp3" id="12_tgy6u"]
+[ext_resource type="AudioStream" uid="uid://dfsv3ewwq3mqf" path="res://Assets/Audio/SFX/Jumpscare Sfx.mp3" id="13_cwurv"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
 ambient_light_source = 2
@@ -45,6 +58,16 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="GameManager" type="Node" parent="." unique_id=1593327408 groups=["gameManagerGroup"]]
 script = ExtResource("4_3dryh")
+jumpscareSounds = Array[AudioStream]([ExtResource("2_85qyi"), ExtResource("3_iivbl"), ExtResource("4_7nbq1"), ExtResource("5_exi56"), ExtResource("6_7t8sx"), ExtResource("7_mg4q0"), ExtResource("8_vm72l"), ExtResource("9_22asu"), ExtResource("10_fkdbe"), ExtResource("11_81klo"), ExtResource("12_tgy6u"), ExtResource("13_cwurv")])
+
+[node name="BGMusicPlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1635302887]
+stream = ExtResource("2_i6g32")
+volume_db = -10.0
+
+[node name="JumpscarePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1576364984]
+volume_db = 10.0
+
+[node name="NarratorPlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=108267984]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1166078804]
 environment = SubResource("Environment_g0mrk")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bl25x1t5m600y"
+path="res://.godot/imported/Creepy Sound Sfx.mp3-db5b18fdb6509bc4d66c0fd417a5e3e5.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/Creepy Sound Sfx.mp3"
+dest_files=["res://.godot/imported/Creepy Sound Sfx.mp3-db5b18fdb6509bc4d66c0fd417a5e3e5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

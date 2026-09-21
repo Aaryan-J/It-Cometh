@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxoselyepj6xx"
+path="res://.godot/imported/Tense Ambience 3 Track .mp3-dfbf7334539dd3923c56408b0befae18.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Tense Ambience 3 Track .mp3"
+dest_files=["res://.godot/imported/Tense Ambience 3 Track .mp3-dfbf7334539dd3923c56408b0befae18.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.1
+bpm=0
+beat_count=0
+bar_beats=4

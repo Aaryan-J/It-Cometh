@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://chma36bn74x18" path="res://Scripts/Player/HUD/timerLabel.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://drvcrdrmh0q2d" path="res://Scripts/Player/HUD/taskAlert.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://b3iryrruimdjt" path="res://Scripts/Tasks/minigameWindow.gd" id="5_fkybt"]
+[ext_resource type="Texture2D" uid="uid://c25xrw0bitr5c" path="res://Assets/UI/background.png" id="6_3smsa"]
 [ext_resource type="Shader" uid="uid://cc4xaigreaast" path="res://Assets/retro.gdshader" id="6_x3wgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sbo6d"]
@@ -131,6 +132,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="background" type="TextureRect" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=904634826]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -32.0
+offset_right = 620.0
+offset_bottom = 469.0
+texture = ExtResource("6_3smsa")
+expand_mode = 2
+
 [node name="WireDrawingLayer" type="Control" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=1340292087]
 layout_mode = 1
 anchors_preset = 15
@@ -141,7 +151,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="CurrentLine" type="Line2D" parent="HUD/MinigameWindow/BGPanel/WireContainer/WireDrawingLayer" unique_id=326860364]
-width = 4.0
+width = 20.0
 
 [node name="LeftWires" type="VBoxContainer" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=1598925974]
 layout_mode = 1
@@ -152,7 +162,8 @@ offset_top = 4.0
 offset_right = 124.0
 offset_bottom = -5.0
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 40
+alignment = 1
 
 [node name="RightWires" type="VBoxContainer" parent="HUD/MinigameWindow/BGPanel/WireContainer" unique_id=1398188923]
 layout_mode = 1
@@ -160,13 +171,14 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -65.0
+offset_left = -113.0
 offset_top = 5.0
 offset_right = -8.0
 offset_bottom = -9.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 40
+alignment = 1
 
 [node name="RadioContainer" type="Control" parent="HUD/MinigameWindow/BGPanel" unique_id=1020383804]
 layout_mode = 1
@@ -175,6 +187,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=939298556]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -32.0
+offset_right = 620.0
+offset_bottom = 469.0
+texture = ExtResource("6_3smsa")
+expand_mode = 2
 
 [node name="TargetLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=1508757852]
 layout_mode = 1
@@ -231,6 +252,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="background" type="TextureRect" parent="HUD/MinigameWindow/BGPanel/OxygenContainer" unique_id=1681167419]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -32.0
+offset_right = 620.0
+offset_bottom = 469.0
+texture = ExtResource("6_3smsa")
+expand_mode = 2
+
 [node name="PressureBar" type="ProgressBar" parent="HUD/MinigameWindow/BGPanel/OxygenContainer" unique_id=1963664030]
 layout_mode = 1
 anchors_preset = 14
@@ -278,6 +308,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="background" type="TextureRect" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=1860904479]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -32.0
+offset_right = 620.0
+offset_bottom = 469.0
+texture = ExtResource("6_3smsa")
+expand_mode = 2
 
 [node name="TerminalDisplay" type="Label" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=1656005255]
 layout_mode = 1
