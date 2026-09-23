@@ -18,6 +18,13 @@
 [ext_resource type="AudioStream" uid="uid://c51xalv65gg41" path="res://Assets/Audio/SFX/Jumpscare Sfx 2.mp3" id="11_81klo"]
 [ext_resource type="AudioStream" uid="uid://dmtt8olb43jnn" path="res://Assets/Audio/SFX/Jumpscare SFX 3.mp3" id="12_tgy6u"]
 [ext_resource type="AudioStream" uid="uid://dfsv3ewwq3mqf" path="res://Assets/Audio/SFX/Jumpscare Sfx.mp3" id="13_cwurv"]
+[ext_resource type="AudioStream" uid="uid://b2pr6b8qoqt0j" path="res://Assets/Audio/Voice/welcome.wav" id="14_22asu"]
+[ext_resource type="AudioStream" uid="uid://ccgcvcx5k5cy7" path="res://Assets/Audio/Voice/fuse.wav" id="15_fkdbe"]
+[ext_resource type="AudioStream" uid="uid://c2rhenohbhyrq" path="res://Assets/Audio/Voice/radio.wav" id="16_81klo"]
+[ext_resource type="AudioStream" uid="uid://b5t7ra32nb6b2" path="res://Assets/Audio/Voice/mainframe.wav" id="17_tgy6u"]
+[ext_resource type="AudioStream" uid="uid://cj4u716f0i3ej" path="res://Assets/Audio/Voice/oxygen.wav" id="18_cwurv"]
+[ext_resource type="AudioStream" uid="uid://bk23xbkfc7nfv" path="res://Assets/Audio/Voice/taskcompleted.wav" id="19_mucmn"]
+[ext_resource type="AudioStream" uid="uid://gjc6awrm1es7" path="res://Assets/Audio/Voice/uruseless.wav" id="20_8m3t6"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
 ambient_light_source = 2
@@ -59,6 +66,13 @@ albedo_color = Color(0, 0, 0, 1)
 [node name="GameManager" type="Node" parent="." unique_id=1593327408 groups=["gameManagerGroup"]]
 script = ExtResource("4_3dryh")
 jumpscareSounds = Array[AudioStream]([ExtResource("2_85qyi"), ExtResource("3_iivbl"), ExtResource("4_7nbq1"), ExtResource("5_exi56"), ExtResource("6_7t8sx"), ExtResource("7_mg4q0"), ExtResource("8_vm72l"), ExtResource("9_22asu"), ExtResource("10_fkdbe"), ExtResource("11_81klo"), ExtResource("12_tgy6u"), ExtResource("13_cwurv")])
+voiceIntro = ExtResource("14_22asu")
+voiceFuseBlown = ExtResource("15_fkdbe")
+voiceRadioBroken = ExtResource("16_81klo")
+voiceMainframeLockout = ExtResource("17_tgy6u")
+voiceOxygenBroken = ExtResource("18_cwurv")
+voiceTaskFixed = ExtResource("19_mucmn")
+voicePanic30s = ExtResource("20_8m3t6")
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1635302887]
 stream = ExtResource("2_i6g32")

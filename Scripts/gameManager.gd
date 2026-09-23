@@ -8,7 +8,22 @@ extends Node
 # ------ editor vars ------
 @export var totalApocalypseTime: float = 300.0
 
+@export_group("Jumpscare Sounds")
 @export var jumpscareSounds: Array[AudioStream] = []
+
+@export_group("Narrator")
+@export var voiceIntro: AudioStream
+@export var voiceFuseBlown: AudioStream
+@export var voiceRadioBroken: AudioStream
+@export var voiceMainframeLockout: AudioStream
+@export var voiceOxygenBroken: AudioStream
+@export var voiceTaskFixed: AudioStream
+@export var voicePanic30s: AudioStream
+
+var milestoneNarrated: Dictionary = {
+	"intro": false,
+	"panic": false
+}
 
 # ------ internal vars ------
 var timeLeft: float = 300.0
@@ -66,6 +81,14 @@ func _process(delta: float) -> void:
 			breakRandomBunkerTask()
 
 	if isGameActive:
+		if timeLeft <= (totalApocalypseTime - 5.0) and not milestoneNarrated["intro"]:
+			milestoneNarrated["intro"] = true
+			playNarratorVoice(voiceIntro)
+
+		if timeLeft <= 30.0 and not milestoneNarrated["panic"]:
+			milestoneNarrated["panic"] = true
+			playNarratorVoice(voicePanic30s)
+
 		if (lastJumpscareTime - timeLeft) >= jumpscareCooldown:
 			var scareChance = 0.0005 * activeBrokenTasks.size()
 			if randf() < scareChance and jumpscareSounds.size() > 0:
@@ -84,12 +107,18 @@ func breakRandomBunkerTask() -> void:
 
 		if chosenTask.taskName == "FuseBox":
 			get_tree().call_group("bunkerLightsGroup", "setLightPower", false)
+			playNarratorVoice(voiceFuseBlown)
 		elif chosenTask.taskName == "MainframeTerminal":
 			for i in range(3):
 				var generatedSegment = ""
 				for j in range(4):
 					generatedSegment += str(randi() % 10)
 				activeTerminalCode[i] = generatedSegment
+			playNarratorVoice(voiceMainframeLockout)
+		elif chosenTask.taskName == "Radio":
+			playNarratorVoice(voiceRadioBroken)
+		elif chosenTask.taskName == "OxygenFilter":
+			playNarratorVoice(voiceOxygenBroken)
 		# tts "Warning: Component Failure Detected"
 
 func _on_taskRepaired(task: Interactable) -> void:
@@ -103,6 +132,7 @@ func _on_taskRepaired(task: Interactable) -> void:
 
 	timeLeft = currentMaxCap
 
+	playNarratorVoice(voiceTaskFixed)
 	print("Task Fixed! Ceiling shrunk to ", currentMaxCap, "s and timer was fully refilled.")
 
 func adjustDifficultyScaling() -> void:
