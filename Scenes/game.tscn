@@ -18,13 +18,35 @@
 [ext_resource type="AudioStream" uid="uid://c51xalv65gg41" path="res://Assets/Audio/SFX/Jumpscare Sfx 2.mp3" id="11_81klo"]
 [ext_resource type="AudioStream" uid="uid://dmtt8olb43jnn" path="res://Assets/Audio/SFX/Jumpscare SFX 3.mp3" id="12_tgy6u"]
 [ext_resource type="AudioStream" uid="uid://dfsv3ewwq3mqf" path="res://Assets/Audio/SFX/Jumpscare Sfx.mp3" id="13_cwurv"]
+[ext_resource type="AudioStream" uid="uid://cwtnl77n14n8c" path="res://Assets/Audio/Voice/gofaster.wav" id="14_7nbq1"]
 [ext_resource type="AudioStream" uid="uid://b2pr6b8qoqt0j" path="res://Assets/Audio/Voice/welcome.wav" id="14_22asu"]
+[ext_resource type="AudioStream" uid="uid://28o7twpf4jwi" path="res://Assets/Audio/Voice/fixeverything.wav" id="15_7t8sx"]
 [ext_resource type="AudioStream" uid="uid://ccgcvcx5k5cy7" path="res://Assets/Audio/Voice/fuse.wav" id="15_fkdbe"]
 [ext_resource type="AudioStream" uid="uid://c2rhenohbhyrq" path="res://Assets/Audio/Voice/radio.wav" id="16_81klo"]
+[ext_resource type="AudioStream" uid="uid://dnipcycvvk7e7" path="res://Assets/Audio/Voice/fuse1.wav" id="17_32sfa"]
 [ext_resource type="AudioStream" uid="uid://b5t7ra32nb6b2" path="res://Assets/Audio/Voice/mainframe.wav" id="17_tgy6u"]
 [ext_resource type="AudioStream" uid="uid://cj4u716f0i3ej" path="res://Assets/Audio/Voice/oxygen.wav" id="18_cwurv"]
+[ext_resource type="AudioStream" uid="uid://ban1nxq7vlukn" path="res://Assets/Audio/Voice/fuse2.wav" id="18_titue"]
 [ext_resource type="AudioStream" uid="uid://bk23xbkfc7nfv" path="res://Assets/Audio/Voice/taskcompleted.wav" id="19_mucmn"]
+[ext_resource type="AudioStream" uid="uid://frxjb5aux70f" path="res://Assets/Audio/Voice/fuse3.wav" id="19_tt7mg"]
 [ext_resource type="AudioStream" uid="uid://gjc6awrm1es7" path="res://Assets/Audio/Voice/uruseless.wav" id="20_8m3t6"]
+[ext_resource type="AudioStream" uid="uid://bspqs82o0pq1r" path="res://Assets/Audio/Voice/fuse4.wav" id="20_htg8p"]
+[ext_resource type="AudioStream" uid="uid://dhir8s8jimna5" path="res://Assets/Audio/Voice/radio1.wav" id="22_jcvim"]
+[ext_resource type="AudioStream" uid="uid://bh1dnew5xpr4m" path="res://Assets/Audio/Voice/radio2.wav" id="23_fnkle"]
+[ext_resource type="AudioStream" uid="uid://cxeaaafr1syyg" path="res://Assets/Audio/Voice/radio3.wav" id="24_wr3wg"]
+[ext_resource type="AudioStream" uid="uid://bd1p4odvx1sob" path="res://Assets/Audio/Voice/radio4.wav" id="25_6xvgv"]
+[ext_resource type="AudioStream" uid="uid://bwwmoglfx58kt" path="res://Assets/Audio/Voice/mainframe1.wav" id="27_8lpvs"]
+[ext_resource type="AudioStream" uid="uid://6brbxygsxrlx" path="res://Assets/Audio/Voice/mainframe2.wav" id="28_x6jpx"]
+[ext_resource type="AudioStream" uid="uid://c30ysgg5rdwrr" path="res://Assets/Audio/Voice/mainframe3.wav" id="29_sjh24"]
+[ext_resource type="AudioStream" uid="uid://1ef8wnj0cpyc" path="res://Assets/Audio/Voice/mainframe4.wav" id="30_k5jl5"]
+[ext_resource type="AudioStream" uid="uid://ckybor4kisrgx" path="res://Assets/Audio/Voice/oxygen1.wav" id="32_nqk4g"]
+[ext_resource type="AudioStream" uid="uid://4jgbcg5ay3h0" path="res://Assets/Audio/Voice/oxygen2.wav" id="33_fh6x0"]
+[ext_resource type="AudioStream" uid="uid://dna8j70yev00t" path="res://Assets/Audio/Voice/oxygen3.wav" id="34_j0obb"]
+[ext_resource type="AudioStream" uid="uid://d1xtm2lxlloqm" path="res://Assets/Audio/Voice/oxygen4.wav" id="35_nfavm"]
+[ext_resource type="AudioStream" uid="uid://be0dpyaa10w4c" path="res://Assets/Audio/Voice/taskcompleted1.wav" id="37_jcn4n"]
+[ext_resource type="AudioStream" uid="uid://dktdej6n4wwis" path="res://Assets/Audio/Voice/taskcompleted2.wav" id="38_l4kai"]
+[ext_resource type="AudioStream" uid="uid://dq8y4ea3j8yqr" path="res://Assets/Audio/Voice/taskcompleted3.wav" id="39_kcoun"]
+[ext_resource type="AudioStream" uid="uid://cdrjuww7ywg3g" path="res://Assets/Audio/Voice/taskcompleted4.wav" id="40_jegl3"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
 ambient_light_source = 2
@@ -66,22 +88,23 @@ albedo_color = Color(0, 0, 0, 1)
 [node name="GameManager" type="Node" parent="." unique_id=1593327408 groups=["gameManagerGroup"]]
 script = ExtResource("4_3dryh")
 jumpscareSounds = Array[AudioStream]([ExtResource("2_85qyi"), ExtResource("3_iivbl"), ExtResource("4_7nbq1"), ExtResource("5_exi56"), ExtResource("6_7t8sx"), ExtResource("7_mg4q0"), ExtResource("8_vm72l"), ExtResource("9_22asu"), ExtResource("10_fkdbe"), ExtResource("11_81klo"), ExtResource("12_tgy6u"), ExtResource("13_cwurv")])
-voiceIntro = ExtResource("14_22asu")
-voiceFuseBlown = ExtResource("15_fkdbe")
-voiceRadioBroken = ExtResource("16_81klo")
-voiceMainframeLockout = ExtResource("17_tgy6u")
-voiceOxygenBroken = ExtResource("18_cwurv")
-voiceTaskFixed = ExtResource("19_mucmn")
-voicePanic30s = ExtResource("20_8m3t6")
+voiceIntro = Array[AudioStream]([ExtResource("14_22asu"), ExtResource("15_7t8sx")])
+voiceFuseBlown = Array[AudioStream]([ExtResource("15_fkdbe"), ExtResource("17_32sfa"), ExtResource("18_titue"), ExtResource("19_tt7mg"), ExtResource("20_htg8p")])
+voiceRadioBroken = Array[AudioStream]([ExtResource("16_81klo"), ExtResource("22_jcvim"), ExtResource("23_fnkle"), ExtResource("24_wr3wg"), ExtResource("25_6xvgv")])
+voiceMainframeLockout = Array[AudioStream]([ExtResource("17_tgy6u"), ExtResource("27_8lpvs"), ExtResource("28_x6jpx"), ExtResource("29_sjh24"), ExtResource("30_k5jl5")])
+voiceOxygenBroken = Array[AudioStream]([ExtResource("18_cwurv"), ExtResource("32_nqk4g"), ExtResource("33_fh6x0"), ExtResource("34_j0obb"), ExtResource("35_nfavm")])
+voiceTaskFixed = Array[AudioStream]([ExtResource("19_mucmn"), ExtResource("37_jcn4n"), ExtResource("38_l4kai"), ExtResource("39_kcoun"), ExtResource("40_jegl3")])
+voicePanic30s = Array[AudioStream]([ExtResource("14_7nbq1"), ExtResource("20_8m3t6")])
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1635302887]
 stream = ExtResource("2_i6g32")
 volume_db = -10.0
 
 [node name="JumpscarePlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1576364984]
-volume_db = 10.0
+volume_db = 5.0
 
 [node name="NarratorPlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=108267984]
+volume_db = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1166078804]
 environment = SubResource("Environment_g0mrk")
