@@ -47,6 +47,7 @@
 [ext_resource type="AudioStream" uid="uid://dktdej6n4wwis" path="res://Assets/Audio/Voice/taskcompleted2.wav" id="38_l4kai"]
 [ext_resource type="AudioStream" uid="uid://dq8y4ea3j8yqr" path="res://Assets/Audio/Voice/taskcompleted3.wav" id="39_kcoun"]
 [ext_resource type="AudioStream" uid="uid://cdrjuww7ywg3g" path="res://Assets/Audio/Voice/taskcompleted4.wav" id="40_jegl3"]
+[ext_resource type="AudioStream" uid="uid://b5c7egdtbffyl" path="res://Assets/Audio/Voice/dontlookback.wav" id="43_titue"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
 ambient_light_source = 2
@@ -95,6 +96,8 @@ voiceMainframeLockout = Array[AudioStream]([ExtResource("17_tgy6u"), ExtResource
 voiceOxygenBroken = Array[AudioStream]([ExtResource("18_cwurv"), ExtResource("32_nqk4g"), ExtResource("33_fh6x0"), ExtResource("34_j0obb"), ExtResource("35_nfavm")])
 voiceTaskFixed = Array[AudioStream]([ExtResource("19_mucmn"), ExtResource("37_jcn4n"), ExtResource("38_l4kai"), ExtResource("39_kcoun"), ExtResource("40_jegl3")])
 voicePanic30s = Array[AudioStream]([ExtResource("14_7nbq1"), ExtResource("20_8m3t6")])
+voiceDontLookBack = ExtResource("43_titue")
+lookBackJumpscare = ExtResource("9_22asu")
 
 [node name="BGMusicPlayer" type="AudioStreamPlayer" parent="GameManager" unique_id=1635302887]
 stream = ExtResource("2_i6g32")

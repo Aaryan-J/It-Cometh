@@ -19,10 +19,16 @@ extends Node
 @export var voiceOxygenBroken: Array[AudioStream] = []
 @export var voiceTaskFixed: Array[AudioStream] = []
 @export var voicePanic30s: Array[AudioStream] = []
-@export var dontLookBack: AudioStream
 
-@export var introIndex: int = 0
-@export var panicIndex: int = 0
+var introIndex: int = 0
+var panicIndex: int = 0
+
+@export_group("Don't Look Back")
+@export var voiceDontLookBack: AudioStream
+@export var lookBackJumpscare: AudioStream
+
+var dontLookBackMilestones: Array[float] = [240.0, 160.0, 80.0]
+var evaluatedMilestones: Array[bool] = [false, false, false]
 
 # ------ internal vars ------
 var timeLeft: float = 300.0
@@ -89,6 +95,11 @@ func _process(delta: float) -> void:
 		if timeLeft <= 30.0 and panicIndex < voicePanic30s.size() and not narratorPlayer.is_playing():
 			playNarratorVoice(voicePanic30s[panicIndex])
 			panicIndex += 1
+
+		for i in range(dontLookBackMilestones.size()):
+			if timeLeft <= dontLookBackMilestones[i] and not evaluatedMilestones[i]:
+				evaluatedMilestones[i] = true
+				forceLookBackEvent()
 
 		if (lastJumpscareTime - timeLeft) >= jumpscareCooldown:
 			var scareChance = 0.0005 * activeBrokenTasks.size()
@@ -165,7 +176,10 @@ func triggerCosmicEnding() -> void:
 # ------ look back penalty ------
 func applyLookBackPenalty() -> void:
 	timeLeft = max(timeLeft - 30.0, 1.0)
-	print("PENALTY: Looked back! 30 seconds drained from active clock.")
+
+	if lookBackJumpscare:
+		triggerAudioJumpscare(lookBackJumpscare)
+
 
 # ------ music and sfx ------
 func playBGMusic(stream: AudioStream) -> void:
@@ -185,3 +199,16 @@ func playNarratorVoice(stream: AudioStream) -> void:
 	narratorPlayer.stream = stream
 	narratorPlayer.play()
 	print_debug("Narrator audio playing")
+
+func forceLookBackEvent() -> void:
+	if narratorPlayer:
+		narratorPlayer.stop()
+
+	if voiceDontLookBack:
+		playNarratorVoice(voiceDontLookBack)
+
+	var cameraNode = get_tree().get_first_node_in_group("cameraGroup")
+	if cameraNode and cameraNode.has_method("startDontLookBackEvent"):
+		if voiceDontLookBack:
+			playNarratorVoice(voiceDontLookBack)
+		cameraNode.startDontLookBackEvent()

@@ -25,7 +25,7 @@ script = ExtResource("1_v0iea")
 shape = SubResource("CapsuleShape3D_sbo6d")
 debug_color = Color(0, 0.6, 0.69803923, 0.8352941)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=25676551]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=25676551 groups=["cameraGroup"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7105324, 0)
 script = ExtResource("2_cvnsp")
 
@@ -361,6 +361,18 @@ grow_horizontal = 2
 grow_vertical = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="HUD/MinigameWindow/BGPanel" unique_id=256515662]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -30.0
+offset_top = 12.0
+offset_right = -10.0
+offset_bottom = 32.0
+grow_horizontal = 0
+text = "x"
 
 [node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=2146658965]
 layer = 10
