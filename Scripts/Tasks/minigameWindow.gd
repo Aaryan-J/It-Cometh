@@ -309,7 +309,14 @@ func _start_terminal_minigame() -> void:
 	if not terminalContainer: return
 	terminalContainer.show()
 
+	var manager = get_tree().get_first_node_in_group("gameManagerGroup")
+	if not manager: return
 	terminalProgress = 0
+	if manager:
+		for code in manager.activeTerminalCode:
+			if code == "":
+				terminalProgress += 1
+
 	_update_terminal_display()
 
 	if codeInput:

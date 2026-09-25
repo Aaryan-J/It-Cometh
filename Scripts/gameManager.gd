@@ -120,11 +120,12 @@ func breakRandomBunkerTask() -> void:
 		if chosenTask.taskName == "FuseBox":
 			get_tree().call_group("bunkerLightsGroup", "setLightPower", false)
 		elif chosenTask.taskName == "MainframeTerminal":
-			for i in range(3):
-				var generatedSegment = ""
-				for j in range(4):
-					generatedSegment += str(randi() % 10)
-				activeTerminalCode[i] = generatedSegment
+			if activeTerminalCode[0] == "" and activeTerminalCode[1] == "" and activeTerminalCode[2] == "":
+				for i in range(3):
+					var generatedSegment = ""
+					for j in range(4):
+						generatedSegment += str(randi() % 10)
+					activeTerminalCode[i] = generatedSegment
 
 		if timeLeft <= 30 or (narratorPlayer and narratorPlayer.is_playing()):
 			return
