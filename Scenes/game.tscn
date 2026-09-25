@@ -48,6 +48,17 @@
 [ext_resource type="AudioStream" uid="uid://dq8y4ea3j8yqr" path="res://Assets/Audio/Voice/taskcompleted3.wav" id="39_kcoun"]
 [ext_resource type="AudioStream" uid="uid://cdrjuww7ywg3g" path="res://Assets/Audio/Voice/taskcompleted4.wav" id="40_jegl3"]
 [ext_resource type="AudioStream" uid="uid://b5c7egdtbffyl" path="res://Assets/Audio/Voice/dontlookback.wav" id="43_titue"]
+[ext_resource type="Texture2D" uid="uid://datrdctkdueik" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_BunkerWall_4m_Concrete_Wall_BaseColor.png" id="47_nqk4g"]
+[ext_resource type="PackedScene" uid="uid://bjawhqouotmrr" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Crate_A_Stack.glb" id="50_fh6x0"]
+[ext_resource type="PackedScene" uid="uid://dgjdubsemdfe4" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Crate_A.glb" id="51_j0obb"]
+[ext_resource type="PackedScene" uid="uid://fedmium7weuh" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Chair_Bunker.glb" id="52_nfavm"]
+[ext_resource type="PackedScene" uid="uid://o11irvowo1b8" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Kettle_Kitchen.glb" id="53_jcn4n"]
+[ext_resource type="PackedScene" uid="uid://blbnjdnooummj" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Shelves_Bunker.glb" id="54_l4kai"]
+[ext_resource type="PackedScene" uid="uid://cbkdqgyfl5n34" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Pan_Kitchen.glb" id="55_kcoun"]
+[ext_resource type="PackedScene" uid="uid://c53d7rcodj7xt" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Pot_Kitchen.glb" id="56_jegl3"]
+[ext_resource type="PackedScene" uid="uid://sl578jdd0ymw" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Mug_Kitchen.glb" id="57_csv17"]
+[ext_resource type="PackedScene" uid="uid://bbpn84j863hv5" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bed_Bunker.glb" id="58_6i05k"]
+[ext_resource type="PackedScene" uid="uid://c2jobfbv5n85n" path="res://Assets/BunkerInterior_ModularKit_GLB/SM_Bed_Sheet_A.glb" id="59_1kfie"]
 
 [sub_resource type="Environment" id="Environment_g0mrk"]
 ambient_light_source = 2
@@ -63,7 +74,11 @@ fog_sky_affect = 0.0
 fog_depth_curve = 0.2030635
 fog_depth_begin = 3.0
 
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_3smsa"]
+albedo_texture = ExtResource("47_nqk4g")
+
 [sub_resource type="BoxMesh" id="BoxMesh_g35c3"]
+material = SubResource("ORMMaterial3D_3smsa")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yrk3d"]
 
@@ -113,10 +128,11 @@ volume_db = 10.0
 environment = SubResource("Environment_g0mrk")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment" unique_id=471072797]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 4.3, -17.300001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3, 8.700001, -17.300001)
 light_color = Color(1, 0, 0, 1)
-light_energy = 2.221
+light_energy = 2.5
 shadow_enabled = true
+omni_range = 10.0
 
 [node name="Player" parent="." unique_id=450789918 instance=ExtResource("1_ebmjs")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 14.125135, 2.5, -26.132935)
@@ -210,7 +226,7 @@ script = ExtResource("3_wrm1d")
 taskName = "Radio"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tasks/Radio" unique_id=1339703764]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8500001, 0, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.307005, 2.335119, 30.186138)
 shape = SubResource("BoxShape3D_sbo6d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Tasks/Radio/CollisionShape3D" unique_id=1971215273]
@@ -219,7 +235,7 @@ mesh = SubResource("BoxMesh_0mr6a")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
 
 [node name="FuseBox" type="StaticBody3D" parent="Tasks" unique_id=1893368226 groups=["bunkerTasks"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.900001, 4.2, -16.35)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.69427, 7.1180954, -15.492265)
 script = ExtResource("3_wrm1d")
 taskName = "FuseBox"
 
@@ -233,7 +249,7 @@ mesh = SubResource("BoxMesh_0mr6a")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
 
 [node name="OxygenFilter" type="StaticBody3D" parent="Tasks" unique_id=1178879756 groups=["bunkerTasks"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.2, 4.4, -16.35)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 41.689323, 6.197158, -45.49246)
 script = ExtResource("3_wrm1d")
 taskName = "OxygenFilter"
 
@@ -247,7 +263,7 @@ mesh = SubResource("BoxMesh_0mr6a")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrk3d")
 
 [node name="MainframeTerminal" type="StaticBody3D" parent="Tasks" unique_id=1322478593 groups=["bunkerTasks"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.2, 4.4, -16.35)
+transform = Transform3D(1.509958e-07, 0, -2, 0, 2, 0, 2, 0, 1.509958e-07, 35.806538, 6.9, -25.186735)
 script = ExtResource("3_wrm1d")
 taskName = "MainframeTerminal"
 
@@ -274,6 +290,10 @@ shape = SubResource("BoxShape3D_0mr6a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CodeNotes/CodeNote1/CollisionShape3D" unique_id=1362135877]
 mesh = SubResource("BoxMesh_sbo6d")
 
+[node name="CodeDisplay" type="Label3D" parent="CodeNotes/CodeNote1" unique_id=739876973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03112793, 0, 0)
+billboard = 1
+
 [node name="CodeNote2" type="StaticBody3D" parent="CodeNotes" unique_id=1098456008 groups=["bunkerTasks"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.4, -24.999998, 5.3, 33.55)
 script = ExtResource("3_wrm1d")
@@ -287,6 +307,10 @@ shape = SubResource("BoxShape3D_0mr6a")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CodeNotes/CodeNote2/CollisionShape3D" unique_id=382071234]
 mesh = SubResource("BoxMesh_sbo6d")
 
+[node name="CodeDisplay" type="Label3D" parent="CodeNotes/CodeNote2" unique_id=1992308162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05521393, 0, 0)
+billboard = 1
+
 [node name="CodeNote3" type="StaticBody3D" parent="CodeNotes" unique_id=2021286646 groups=["bunkerTasks"]]
 transform = Transform3D(-4.371139e-08, 0, -1.4, 0, 1, 0, 1, 0, -6.119594e-08, -20.3, 5.3, 5.3499994)
 script = ExtResource("3_wrm1d")
@@ -299,3 +323,55 @@ shape = SubResource("BoxShape3D_0mr6a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CodeNotes/CodeNote3/CollisionShape3D" unique_id=121663935]
 mesh = SubResource("BoxMesh_sbo6d")
+
+[node name="CodeDisplay" type="Label3D" parent="CodeNotes/CodeNote3" unique_id=1551498814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045648575, 0, 0)
+billboard = 1
+
+[node name="SM_Crate_A_Stack" parent="." unique_id=74740214 instance=ExtResource("50_fh6x0")]
+transform = Transform3D(3.812625, 0, 3.2347937, 0, 5, 0, -3.2347937, 0, 3.812625, -9.21983, 0.6001663, 32.509895)
+
+[node name="SM_Crate_A2" parent="." unique_id=235837048 instance=ExtResource("51_j0obb")]
+transform = Transform3D(4.198674, 0, 2.7149832, 0, 5, 0, -2.7149832, 0, 4.198674, -10.6479225, 0.5, 30.268309)
+
+[node name="SM_Crate_A3" parent="." unique_id=233301766 instance=ExtResource("51_j0obb")]
+transform = Transform3D(4.1227956, 0, -2.8288794, 0, 5, 0, 2.8288794, 0, 4.1227956, -17.752377, 0.5, 7.9912405)
+
+[node name="SM_Chair_Bunker" parent="." unique_id=57115102 instance=ExtResource("52_nfavm")]
+transform = Transform3D(4.6749206, 0, -1.7734474, 0, 5, 0, 1.7734474, 0, 4.6749206, 52.31951, 0.49999952, -52.78552)
+
+[node name="SM_Kettle_Kitchen2" parent="." unique_id=243564438 instance=ExtResource("53_jcn4n")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 53.136, 3.4223354, -52.555653)
+
+[node name="SM_Shelves_Bunker" parent="." unique_id=1733152109 instance=ExtResource("54_l4kai")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 50.478935, 3.098236, -25.020601)
+
+[node name="SM_Pan_Kitchen" parent="." unique_id=1205571848 instance=ExtResource("55_kcoun")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 44.82744, -1.1355855, -19.711313)
+
+[node name="SM_Pot_Kitchen" parent="." unique_id=210906841 instance=ExtResource("56_jegl3")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 42.869915, 1.4411488, -19.737434)
+
+[node name="SM_Mug_Kitchen" parent="." unique_id=245311632 instance=ExtResource("57_csv17")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 38.616478, -1.0879447, -19.851595)
+
+[node name="SM_Crate_A_Stack2" parent="." unique_id=849782241 instance=ExtResource("50_fh6x0")]
+transform = Transform3D(3.4686422, 0, -3.6011834, 0, 5, 0, 3.6011834, 0, 3.4686422, -0.77431583, 0.5200337, -19.868578)
+
+[node name="SM_Crate_A_Stack3" parent="." unique_id=492979664 instance=ExtResource("50_fh6x0")]
+transform = Transform3D(-0.88602376, 0, -4.920871, 0, 5, 0, 4.920871, 0, -0.88602376, -2.0279775, 0.5200337, -29.315163)
+
+[node name="SM_Bed_Bunker" parent="." unique_id=1330227502 instance=ExtResource("58_6i05k")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.0641596, 0.5026482, -41.6232)
+
+[node name="SM_Bed_Sheet_A" parent="SM_Bed_Bunker" unique_id=1642011866 instance=ExtResource("59_1kfie")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16434309, 0, 0)
+
+[node name="SM_Crate_A4" parent="." unique_id=1145169158 instance=ExtResource("51_j0obb")]
+transform = Transform3D(-0.6361964, 0, -4.95936, 0, 4.999999, 0, 4.95936, 0, -0.6361964, 1.319507, 0.5, -26.496618)
+
+[node name="SM_Crate_A5" parent="." unique_id=142754842 instance=ExtResource("51_j0obb")]
+transform = Transform3D(2.0519247, 0, -3.4335992, 0, 4, 0, 3.4335992, 0, 2.0519247, 1.4448599, 3.0892153, -26.410114)
+
+[node name="SM_Crate_A6" parent="." unique_id=1866604849 instance=ExtResource("51_j0obb")]
+transform = Transform3D(-1.7791862, 0, -3.5825264, 0, 4, 0, 3.5825264, 0, -1.7791862, 1.7125659, 0.5542965, -22.414007)
