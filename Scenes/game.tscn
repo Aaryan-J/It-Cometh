@@ -328,50 +328,52 @@ mesh = SubResource("BoxMesh_sbo6d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045648575, 0, 0)
 billboard = 1
 
-[node name="SM_Crate_A_Stack" parent="." unique_id=74740214 instance=ExtResource("50_fh6x0")]
+[node name="MapStuff" type="Node" parent="." unique_id=1700157283]
+
+[node name="SM_Crate_A_Stack" parent="MapStuff" unique_id=74740214 instance=ExtResource("50_fh6x0")]
 transform = Transform3D(3.812625, 0, 3.2347937, 0, 5, 0, -3.2347937, 0, 3.812625, -9.21983, 0.6001663, 32.509895)
 
-[node name="SM_Crate_A2" parent="." unique_id=235837048 instance=ExtResource("51_j0obb")]
+[node name="SM_Crate_A2" parent="MapStuff" unique_id=235837048 instance=ExtResource("51_j0obb")]
 transform = Transform3D(4.198674, 0, 2.7149832, 0, 5, 0, -2.7149832, 0, 4.198674, -10.6479225, 0.5, 30.268309)
 
-[node name="SM_Crate_A3" parent="." unique_id=233301766 instance=ExtResource("51_j0obb")]
+[node name="SM_Crate_A3" parent="MapStuff" unique_id=233301766 instance=ExtResource("51_j0obb")]
 transform = Transform3D(4.1227956, 0, -2.8288794, 0, 5, 0, 2.8288794, 0, 4.1227956, -17.752377, 0.5, 7.9912405)
 
-[node name="SM_Chair_Bunker" parent="." unique_id=57115102 instance=ExtResource("52_nfavm")]
+[node name="SM_Chair_Bunker" parent="MapStuff" unique_id=57115102 instance=ExtResource("52_nfavm")]
 transform = Transform3D(4.6749206, 0, -1.7734474, 0, 5, 0, 1.7734474, 0, 4.6749206, 52.31951, 0.49999952, -52.78552)
 
-[node name="SM_Kettle_Kitchen2" parent="." unique_id=243564438 instance=ExtResource("53_jcn4n")]
+[node name="SM_Kettle_Kitchen2" parent="MapStuff" unique_id=243564438 instance=ExtResource("53_jcn4n")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 53.136, 3.4223354, -52.555653)
 
-[node name="SM_Shelves_Bunker" parent="." unique_id=1733152109 instance=ExtResource("54_l4kai")]
+[node name="SM_Shelves_Bunker" parent="MapStuff" unique_id=1733152109 instance=ExtResource("54_l4kai")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 50.478935, 3.098236, -25.020601)
 
-[node name="SM_Pan_Kitchen" parent="." unique_id=1205571848 instance=ExtResource("55_kcoun")]
+[node name="SM_Pan_Kitchen" parent="MapStuff" unique_id=1205571848 instance=ExtResource("55_kcoun")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 44.82744, -1.1355855, -19.711313)
 
-[node name="SM_Pot_Kitchen" parent="." unique_id=210906841 instance=ExtResource("56_jegl3")]
+[node name="SM_Pot_Kitchen" parent="MapStuff" unique_id=210906841 instance=ExtResource("56_jegl3")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 42.869915, 1.4411488, -19.737434)
 
-[node name="SM_Mug_Kitchen" parent="." unique_id=245311632 instance=ExtResource("57_csv17")]
+[node name="SM_Mug_Kitchen" parent="MapStuff" unique_id=245311632 instance=ExtResource("57_csv17")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 38.616478, -1.0879447, -19.851595)
 
-[node name="SM_Crate_A_Stack2" parent="." unique_id=849782241 instance=ExtResource("50_fh6x0")]
+[node name="SM_Crate_A_Stack2" parent="MapStuff" unique_id=849782241 instance=ExtResource("50_fh6x0")]
 transform = Transform3D(3.4686422, 0, -3.6011834, 0, 5, 0, 3.6011834, 0, 3.4686422, -0.77431583, 0.5200337, -19.868578)
 
-[node name="SM_Crate_A_Stack3" parent="." unique_id=492979664 instance=ExtResource("50_fh6x0")]
+[node name="SM_Crate_A_Stack3" parent="MapStuff" unique_id=492979664 instance=ExtResource("50_fh6x0")]
 transform = Transform3D(-0.88602376, 0, -4.920871, 0, 5, 0, 4.920871, 0, -0.88602376, -2.0279775, 0.5200337, -29.315163)
 
-[node name="SM_Bed_Bunker" parent="." unique_id=1330227502 instance=ExtResource("58_6i05k")]
+[node name="SM_Bed_Bunker" parent="MapStuff" unique_id=1330227502 instance=ExtResource("58_6i05k")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.0641596, 0.5026482, -41.6232)
 
-[node name="SM_Bed_Sheet_A" parent="SM_Bed_Bunker" unique_id=1642011866 instance=ExtResource("59_1kfie")]
+[node name="SM_Bed_Sheet_A" parent="MapStuff/SM_Bed_Bunker" unique_id=1642011866 instance=ExtResource("59_1kfie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16434309, 0, 0)
 
-[node name="SM_Crate_A4" parent="." unique_id=1145169158 instance=ExtResource("51_j0obb")]
+[node name="SM_Crate_A4" parent="MapStuff" unique_id=1145169158 instance=ExtResource("51_j0obb")]
 transform = Transform3D(-0.6361964, 0, -4.95936, 0, 4.999999, 0, 4.95936, 0, -0.6361964, 1.319507, 0.5, -26.496618)
 
-[node name="SM_Crate_A5" parent="." unique_id=142754842 instance=ExtResource("51_j0obb")]
+[node name="SM_Crate_A5" parent="MapStuff" unique_id=142754842 instance=ExtResource("51_j0obb")]
 transform = Transform3D(2.0519247, 0, -3.4335992, 0, 4, 0, 3.4335992, 0, 2.0519247, 1.4448599, 3.0892153, -26.410114)
 
-[node name="SM_Crate_A6" parent="." unique_id=1866604849 instance=ExtResource("51_j0obb")]
+[node name="SM_Crate_A6" parent="MapStuff" unique_id=1866604849 instance=ExtResource("51_j0obb")]
 transform = Transform3D(-1.7791862, 0, -3.5825264, 0, 4, 0, 3.5825264, 0, -1.7791862, 1.7125659, 0.5542965, -22.414007)

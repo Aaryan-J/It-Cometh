@@ -5,6 +5,10 @@ extends Node
 @onready var jumpscarePlayer: AudioStreamPlayer = $JumpscarePlayer
 @onready var narratorPlayer: AudioStreamPlayer = $NarratorPlayer
 
+@onready var endingScreen: ColorRect = $"../Player/HUD/EndingScreen"
+@onready var endingLabel: Label = $"../Player/HUD/EndingScreen/EndingLabel"
+@onready var menuButton: Button = $"../Player/HUD/EndingScreen/MainMenuButton"
+
 # ------ editor vars ------
 @export var totalApocalypseTime: float = 300.0
 
@@ -56,6 +60,11 @@ func _ready() -> void:
 
 	currentMaxCap = totalApocalypseTime
 	timeLeft = currentMaxCap
+
+	if menuButton:
+		if menuButton.pressed.is_connected(_on_main_menu_button_pressed):
+			menuButton.pressed.disconnect(_on_main_menu_button_pressed)
+		menuButton.pressed.connect(_on_main_menu_button_pressed)
 
 	var scannedNodes = get_tree().get_nodes_in_group("bunkerTasks")
 
@@ -172,7 +181,26 @@ func adjustDifficultyScaling() -> void:
 
 func triggerCosmicEnding() -> void:
 	isGameActive = false
-	print("IT IS HERE")
+
+	if endingScreen: endingScreen.show()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	if endingLabel:
+		endingLabel.text = "It is here."
+		await get_tree().create_timer(4.0).timeout
+
+		endingLabel.text = "So... This is what bliss feels like."
+		await get_tree().create_timer(4.0).timeout
+
+		endingLabel.text = "Why was I trying to escape it?"
+		await get_tree().create_timer(4.0).timeout
+
+		endingLabel.text = "Consume ME."
+		await get_tree().create_timer(4.0).timeout
+
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		menuButton.visible = true
+		menuButton.disabled = false
 
 # ------ look back penalty ------
 func applyLookBackPenalty() -> void:
@@ -213,3 +241,7 @@ func forceLookBackEvent() -> void:
 		if voiceDontLookBack:
 			playNarratorVoice(voiceDontLookBack)
 		cameraNode.startDontLookBackEvent()
+
+func _on_main_menu_button_pressed() -> void:
+	Engine.time_scale = 1.0
+	get_tree().change_scene_to_file("res://Scenes/mainMenu.tscn")

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://lpy7lfuokur2"]
+
+[ext_resource type="Script" uid="uid://c13jd1nh5xei0" path="res://Scripts/mainMenu.gd" id="1_5pknu"]
+[ext_resource type="Texture2D" uid="uid://xxfpipxgkypv" path="res://Assets/UI/mainmenu.png" id="1_60k44"]
+[ext_resource type="AudioStream" uid="uid://dxoselyepj6xx" path="res://Assets/Audio/Music/Tense Ambience 3 Track .mp3" id="3_b7htb"]
+
+[node name="MainMenu" type="Control" unique_id=153786015]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5pknu")
+
+[node name="MainMenuBG" type="TextureRect" parent="." unique_id=747750173]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_60k44")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="." unique_id=1122517186]
+layout_mode = 0
+offset_left = 655.0
+offset_top = 156.0
+offset_right = 1105.0
+offset_bottom = 255.0
+theme_override_font_sizes/font_size = 72
+text = "IT COMETH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="." unique_id=1271625568]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 408.0
+offset_right = 981.0
+offset_bottom = 483.0
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="MainMenuPlayer" type="AudioStreamPlayer" parent="." unique_id=646271070]
+stream = ExtResource("3_b7htb")
+autoplay = true

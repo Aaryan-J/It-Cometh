@@ -69,15 +69,25 @@ func startDontLookBackEvent() -> void:
 	isDontLookBackActive = true
 
 	startingYRotation = get_parent().global_transform.basis.get_euler().y
-	print("NARRATOR: DO NOT LOOK BEHIND YOU.") # tts narrator
+
+	if interactionPrompt:
+		interactionPrompt.text = "DO NOT LOOK BEHIND."
+		interactionPrompt.modulate = Color.RED
 
 func triggerLookBackPenalty() -> void:
 	isDontLookBackActive = false
+
+	if interactionPrompt:
+		interactionPrompt.text = ""
+		interactionPrompt.modulate = Color.WHITE
 
 	if gameManager:
 		gameManager.applyLookBackPenalty()
 
 func handleHUDPrompts() -> void:
+	if isDontLookBackActive:
+		return
+
 	if interactionRay and interactionRay.is_colliding():
 		var target = interactionRay.get_collider()
 		if target is Interactable:
