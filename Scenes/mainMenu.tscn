@@ -13,6 +13,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5pknu")
 
+[node name="MainMenuPlayer" type="AudioStreamPlayer" parent="." unique_id=646271070]
+stream = ExtResource("3_b7htb")
+autoplay = true
+
 [node name="MainMenuBG" type="TextureRect" parent="." unique_id=747750173]
 layout_mode = 1
 anchors_preset = 15
@@ -45,6 +49,93 @@ offset_bottom = 483.0
 theme_override_font_sizes/font_size = 48
 text = "Play"
 
-[node name="MainMenuPlayer" type="AudioStreamPlayer" parent="." unique_id=646271070]
-stream = ExtResource("3_b7htb")
-autoplay = true
+[node name="TutorialButton" type="Button" parent="." unique_id=1765917603]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 505.0
+offset_right = 981.0
+offset_bottom = 580.0
+theme_override_font_sizes/font_size = 48
+text = "Tutorial"
+
+[node name="TutorialPanel" type="Panel" parent="." unique_id=1857017252]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoreText" type="RichTextLabel" parent="TutorialPanel" unique_id=581126522]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center][b][color=red]Read Carefully[/color][/b]
+Bunker Command 
+--------------------------------------------------------[/center]
+
+1. THE THREAT ENVIRONMENT
+[b]It Cometh. The entity approaches from the outer cosmos. It cannot be killed, barred, or bargained with. 
+
+Its physical proximity exerts a compression field on our reality. As long as it is near, the bunker will malfunction. Time is your only metric of distance. When your clock strikes zero... it has arrived.[/b]
+
+--------------------------------------------------
+
+2. HOW TO REPAIR (Press [color=yellow]E[/color] to interact)
+[b]You must delay the inevitable. Keeping the bunker systems functional pushes the compression boundaries back, completely refilling your lifespan cap. However, each repair takes a toll on the structure, your maximum capacity will decrease by 10 seconds after every fix.[/b]
+
+* THE FUSE BOX (Grid Failure):
+[b]When the circuits overload, the lights will plunge into pitch black. Match the colored nodes perfectly to complete the grid loop and restore power.[/b]
+
+* THE RADIO (Analog Frequency Sync):
+[b]Drag the dial needle until the sound stabilizes and locks onto the target frequency threshold. Release it when u reach the target frequency.[/b]
+
+* OXYGEN FILTER (Pressure Stabilization):
+[b]When the atmospheric vents clog, the O2 bar will violently fluctuate. Rapidly click the vent button to pump the pressure down. You must balance the gauge needle strictly within the 40% to 60% safe zone for 3 consecutive seconds.[/b]
+
+* MAINFRAME LOCKOUT (Scavenger Decryption):
+[b]When the central computer crashes, it will demand three 4-digit security keys. The interface will completely lock down. You must drop what you are doing, leave the console, and explore the grimy bunker corridors to locate three handwritten sticky notes hidden randomly on the walls. Read the numbers, return to the interface, and input all three sequences in any order to bypass the lock.[/b]
+
+--------------------------------------------------
+
+3. CRITICAL ANOMALY ALERT
+[b]The system monitors local spatial distortions. If the emergency display flashes a red warning and the broadcast audio commands: \"DO NOT LOOK BEHIND YOU\" FREEZE YOUR CAMERA IMMEDIATELY. NEVER LOOK BEHIND. NEVER. IT GETS ANGRY.
+
+Do not look back. Do not glance around. [/b]
+
+[b]EXTRA NOTES: WASD to move. The entity has made all of your components lose their features, making them black boxes. Figure out which is which by hovering over them when they break. (defo not me being too lazy to make the models myself) [/b]
+--------------------------------------------------
+[center][i]\"You are working so hard... just to die completely exhausted.\"[/i][/center]
+"
+
+[node name="CloseTutorialButton" type="Button" parent="TutorialPanel" unique_id=1026361736]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -50.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "RETURN"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="TutorialPanel/CloseTutorialButton" to="." method="_on_close_tutorial_button_pressed"]

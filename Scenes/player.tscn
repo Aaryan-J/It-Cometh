@@ -95,7 +95,6 @@ vertical_alignment = 1
 script = ExtResource("4_vgqql")
 
 [node name="MinigameWindow" type="Control" parent="HUD" unique_id=1890760036]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,6 +104,7 @@ grow_vertical = 2
 script = ExtResource("5_fkybt")
 
 [node name="BGPanel" type="Panel" parent="HUD/MinigameWindow" unique_id=752583079]
+visible = false
 custom_minimum_size = Vector2(600, 450)
 layout_mode = 1
 anchors_preset = 8
@@ -204,12 +204,13 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_top = 20.0
+offset_top = 162.0
 offset_right = 20.0
-offset_bottom = 23.0
+offset_bottom = 189.0
 grow_horizontal = 2
 offset_transform_position = Vector2(0, 10)
 offset_transform_visual_only = false
+theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -221,12 +222,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
+offset_top = -177.0
 offset_right = 20.0
-offset_bottom = -20.0
+offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_position = Vector2(0, -10)
 offset_transform_visual_only = false
+theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -244,6 +247,18 @@ min_value = 88.0
 max_value = 108.0
 step = 0.1
 value = 88.0
+
+[node name="TutorialLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/RadioContainer" unique_id=633968307]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 20.0
+offset_right = 455.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 20
+text = "Match the frequency to the target
+by sliding the slider"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="OxygenContainer" type="Control" parent="HUD/MinigameWindow/BGPanel" unique_id=1357403529]
 layout_mode = 1
@@ -268,8 +283,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -13.5
-offset_bottom = 13.5
+offset_left = 14.0
+offset_top = -10.0
+offset_right = -6.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -293,12 +310,24 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -149.5
-offset_top = 20.0
-offset_right = 149.5
-offset_bottom = 23.0
+offset_left = -146.0
+offset_top = 162.0
+offset_right = 172.0
+offset_bottom = 189.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
 text = "Keep pressure in safe zone (40% - 60%)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/OxygenContainer" unique_id=1944825669]
+layout_mode = 0
+offset_top = 342.0
+offset_right = 635.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 20
+text = "Click on the Vent Valve button to release pressure
+ and keep it in the safe zone"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -325,10 +354,11 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_top = 20.0
+offset_top = 142.0
 offset_right = 20.0
-offset_bottom = 43.0
+offset_bottom = 165.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -345,6 +375,7 @@ offset_right = 75.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 20
 alignment = 1
 
 [node name="ProgressLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=1262133895]
@@ -354,12 +385,25 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -43.0
-offset_right = 20.0
-offset_bottom = -20.0
+offset_left = -23.0
+offset_top = -191.0
+offset_right = 17.0
+offset_bottom = -168.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialLabel" type="Label" parent="HUD/MinigameWindow/BGPanel/TerminalContainer" unique_id=549687888]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 62.0
+offset_right = 526.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 20
+text = "Find the codes on sticky notes around the bunker and 
+enter them here to restart the terminal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
