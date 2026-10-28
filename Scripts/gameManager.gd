@@ -113,6 +113,8 @@ func _process(delta: float) -> void:
 		if (lastJumpscareTime - timeLeft) >= jumpscareCooldown:
 			var scareChance = 0.0005 * activeBrokenTasks.size()
 			if randf() < scareChance and jumpscareSounds.size() > 0:
+				if narratorPlayer and narratorPlayer.is_playing():
+					return
 				lastJumpscareTime = timeLeft
 				var chosenSound = jumpscareSounds.pick_random()
 				triggerAudioJumpscare(chosenSound)

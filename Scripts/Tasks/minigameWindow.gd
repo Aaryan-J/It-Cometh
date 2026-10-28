@@ -10,10 +10,10 @@ extends Control
 
 #wire matching game
 @onready var wireContainer: Control = $BGPanel/WireContainer
-@onready var leftWires: VBoxContainer = $"BGPanel/WireContainer/LeftWires"
-@onready var rightWires: VBoxContainer = $"BGPanel/WireContainer/RightWires"
-@onready var wireDrawingLayer: Control = $"BGPanel/WireContainer/WireDrawingLayer"
-@onready var currentLine: Line2D = $"BGPanel/WireContainer/WireDrawingLayer/CurrentLine"
+@onready var leftWires: VBoxContainer = $BGPanel/WireContainer/LeftWires
+@onready var rightWires: VBoxContainer = $BGPanel/WireContainer/RightWires
+@onready var wireDrawingLayer: Control = $BGPanel/WireContainer/WireDrawingLayer
+@onready var currentLine: Line2D = $BGPanel/WireContainer/WireDrawingLayer/CurrentLine
 
 # dial tuning minigame
 @onready var radioContainer: Control = $BGPanel/RadioContainer
@@ -141,6 +141,9 @@ func closeMinigame(successfullyFixed: bool) -> void:
 	currentActiveTask = null
 
 func _setup_minigame(taskname: String) -> void:
+	if has_node("BGPanel"):
+		$BGPanel.show()
+	
 	if closeButton: closeButton.show()
 	if wireContainer: wireContainer.hide()
 	if radioContainer: radioContainer.hide()
@@ -166,6 +169,16 @@ func _setup_minigame(taskname: String) -> void:
 			_start_terminal_minigame()
 		_:
 			pass
+		
+	print("--- DIAGNOSTIC START ---")
+	print("Window Name: ", name)
+	print("Window Visible State: ", visible)
+	print("Window Global Position: ", global_position)
+	print("Window Size: ", size)
+	if has_node("BGPanel"):
+		print("BGPanel Visible State: ", $BGPanel.visible)
+		print("BGPanel Modulate Alpha: ", $BGPanel.modulate.a)
+	print("--- DIAGNOSTIC END ---")
 
 # wire game
 func _start_wire_minigame() -> void:
@@ -367,5 +380,5 @@ func _on_close_button_pressed() -> void:
 	closeMinigame(false)
 
 	if OS.has_feature("web"):
-		await get_tree().process_frame 
+		await get_tree().process_frame
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
