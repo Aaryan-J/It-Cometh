@@ -365,3 +365,7 @@ func _on_fix_button_pressed() -> void:
 
 func _on_close_button_pressed() -> void:
 	closeMinigame(false)
+
+	if OS.has_feature("web"):
+		await get_tree().process_frame 
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

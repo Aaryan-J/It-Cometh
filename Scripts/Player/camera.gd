@@ -41,6 +41,7 @@ func _input(event: InputEvent) -> void:
 		if interactionRay and interactionRay.is_colliding():
 			var target = interactionRay.get_collider()
 			if target is Interactable:
+				get_viewport().set_input_as_handled() # bug fix for browser
 				print("raycast hit object: ", target.taskName)
 				target.interact(get_parent())
 
